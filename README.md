@@ -17,7 +17,7 @@ KI-gestützter Chatbot auf Basis von AnythingLLM mit eigenem Frontend.
 ### 1. Repository klonen
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/manuelhier/DHBWxNPHT_Digitaler-Nationalpark.git
 cd DHBWxNPHT_Digitaler-Nationalpark
 ```
 
@@ -90,6 +90,7 @@ data/               # Quelldokumente für RAG-Ingestion
 ## Häufige Probleme
 
 **Container startet nicht:**
+
 Sicherstellen dass `anythingllm/.env` existiert und `STORAGE_DEVICE_PATH=./storage` gesetzt ist.
 
 **Port 3001 bereits belegt:**
