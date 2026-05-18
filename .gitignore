@@ -3,7 +3,8 @@
 *.env.local
 
 # AnythingLLM persistent data
-anythingllm/storage/
+anythingllm/storage/**
+!anythingllm/storage/.gitkeep
 
 # Node / frontend
 node_modules/
