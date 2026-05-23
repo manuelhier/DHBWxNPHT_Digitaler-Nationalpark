@@ -44,7 +44,7 @@ Docker Compose startet drei Dienste:
 Der Setup-Container wartet automatisch, bis AnythingLLM bereit ist, und führt dann folgende Schritte aus:
 - Workspace `hohe-tauern` erstellen
 - System-Prompt einspielen
-- Dokumente aus `data/` hochladen und einbetten
+- Dokumente aus `anythingllm/data/` hochladen und einbetten
 - Embed-Config für das Chat-Widget anlegen
 - `frontend/config.json` mit der generierten Embed-ID schreiben
 
@@ -110,10 +110,11 @@ frontend/
   index.html            # Chat-Frontend (via Nginx auf Port 3002)
   config.json           # Generiert vom Setup-Container – nicht committen (gitignored)
 
-nginx/
+config/
   nginx.conf            # Nginx-Konfiguration (proxied /api/ und /embed/ zu AnythingLLM)
 
-data/                   # Quelldokumente für RAG-Ingestion
+anythingllm/
+  data/                 # Quelldokumente für RAG-Ingestion
 ```
 
 ---
