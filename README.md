@@ -25,32 +25,46 @@ cd DHBWxNPHT_Digitaler-Nationalpark
 
 Die `.env`-Datei enthält API-Keys und Secrets und wird **nicht** im Repository gespeichert. Sie wird separat bereitgestellt.
 
-> Die Datei muss unter `anythingllm/.env` liegen – genau dort erwartet Docker Compose sie.
+> Die Datei muss unter `setup/.env` liegen – genau dort erwartet Docker Compose sie.
 
-### 3. Container starten
-
-```bash
-cd anythingllm
-docker compose -f docker_compose.yml up -d
-```
-
-Logs prüfen:
+### 3. Alle Container starten
 
 ```bash
-docker logs anythingllm
+docker compose up -d
 ```
 
-Sobald im Log `Listening on port 3001` erscheint, ist das System bereit.
+Docker Compose startet drei Dienste:
+
+| Container | Aufgabe |
+|---|---|
+| `npht-anythingllm` | RAG-Backend (AnythingLLM) auf Port 3001 |
+| `npht-setup` | Richtet Workspace, Dokumente und Chat-Widget automatisch ein, beendet sich danach |
+| `npht-frontend` | Nginx-Server mit dem Chat-Frontend auf Port 3002 |
+
+Der Setup-Container wartet automatisch, bis AnythingLLM bereit ist, und führt dann folgende Schritte aus:
+- Workspace `hohe-tauern` erstellen
+- System-Prompt einspielen
+- Dokumente aus `data/` hochladen und einbetten
+- Embed-Config für das Chat-Widget anlegen
+- `frontend/config.json` mit der generierten Embed-ID schreiben
+
+Logs des Setup-Containers prüfen:
+
+```bash
+docker logs npht-setup
+```
+
+Erwartete Ausgabe am Ende: `✓ Done. Workspace slug: hohe-tauern, embed UUID: <uuid>`
 
 ---
 
 ## Zugriff
 
 | Dienst | URL |
-| --- | --- |
-| Admin UI / Setup-Wizard | <http://localhost:3001> |
-| API Dokumentation (Swagger) | <http://localhost:3001/api/docs> |
-| Demo Frontend | `frontend/index.html` direkt im Browser öffnen |
+|---|---|
+| Chat-Frontend | <http://localhost:3002> |
+| AnythingLLM Admin UI | <http://localhost:3001> |
+| API-Dokumentation (Swagger) | <http://localhost:3001/api/docs> |
 
 ---
 
@@ -58,42 +72,65 @@ Sobald im Log `Listening on port 3001` erscheint, ist das System bereit.
 
 ```bash
 # Stoppen
-docker compose -f docker_compose.yml down
+docker compose down
 
 # Neu starten (z.B. nach .env-Änderungen)
-docker compose -f docker_compose.yml restart
+docker compose restart
 
 # Status prüfen
 docker ps
 ```
+
+**Kompletter Neuaufbau** (Workspace und Dokumente werden neu eingespielt):
+
+```bash
+docker compose down
+docker compose up -d
+```
+
+Da der Setup-Container bei jedem Start den Workspace neu anlegt, wird dabei auch eine neue Embed-ID generiert und `frontend/config.json` aktualisiert.
 
 ---
 
 ## Projektstruktur
 
 ```
-anythingllm/        # RAG-Backend (AnythingLLM)
-  docker_compose.yml
-  .env              # Secrets – nicht committen (gitignored)
-  env.example       # Vorlage mit allen verfügbaren Variablen
-  config/           # Versionierte System-Prompts
-  storage/          # Persistente Daten – nicht committen (gitignored)
+docker-compose.yml      # Orchestriert alle drei Dienste
 
-frontend/           # Eigenes Chat-Frontend
-  index.html        # Demo-Prototyp (kein Build nötig)
+anythingllm/
+  config/               # Versionierte System-Prompts (deutsch)
+  env.example           # Vorlage mit allen verfügbaren Variablen
 
-data/               # Quelldokumente für RAG-Ingestion
+setup/
+  setup.sh              # Automatisches Setup-Skript
+  Dockerfile
+  .env                  # Secrets – nicht committen (gitignored)
+
+frontend/
+  index.html            # Chat-Frontend (via Nginx auf Port 3002)
+  config.json           # Generiert vom Setup-Container – nicht committen (gitignored)
+
+nginx/
+  nginx.conf            # Nginx-Konfiguration (proxied /api/ und /embed/ zu AnythingLLM)
+
+data/                   # Quelldokumente für RAG-Ingestion
 ```
 
 ---
 
 ## Häufige Probleme
 
-**Container startet nicht:**
+**Chat-Widget lädt nicht / „config.json nicht gefunden":**
 
-Sicherstellen dass `anythingllm/.env` existiert und `STORAGE_DEVICE_PATH=./storage` gesetzt ist.
+Der Setup-Container ist noch nicht durchgelaufen oder ist fehlgeschlagen.
 
-**Port 3001 bereits belegt:**
+```bash
+docker logs npht-setup
+```
+
+Danach ggf. neu starten: `docker compose up -d`
+
+**Port 3001 oder 3002 bereits belegt:**
 
 ```bash
 docker ps  # prüfen welcher Container den Port belegt
@@ -102,7 +139,7 @@ docker ps  # prüfen welcher Container den Port belegt
 **`.env` wurde versehentlich committet:**
 
 ```bash
-git rm --cached anythingllm/.env
+git rm --cached setup/.env
 git commit -m "remove .env from tracking"
 ```
 

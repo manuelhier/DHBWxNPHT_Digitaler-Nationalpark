@@ -441,17 +441,37 @@
     });
   </script>
 
-  <script data-embed-id="3e95dd9d-61a5-4b05-824a-86825066379e" data-base-api-url="http://localhost:3001/api/embed"
-    data-language="de" data-assistant-name="Nationalpark-Assistent"
-    data-brand-image-url="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%20role%3D%22img%22%20aria-label%3D%22Nationalpark%20Hohe%20Tauern%20Logo%22%3E%0A%20%20%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%2231%22%20fill%3D%22%232f6b3f%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M18%2039.5V29.7l14-11.2%2014%2011.2v9.8a2.5%202.5%200%200%201-2.5%202.5h-23A2.5%202.5%200%200%201%2018%2039.5Z%22%20fill%3D%22%23ffffff%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M23%2030.5l5.1-6.1%204.5%205.2%202.5-3.1%206%207.2H23Z%22%20fill%3D%22%232f6b3f%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M27%2042V33h10v9%22%20fill%3D%22%23ffffff%22%2F%3E%0A%3C%2Fsvg%3E"
-    data-assistant-icon="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%20role%3D%22img%22%20aria-label%3D%22Nationalpark%20Hohe%20Tauern%20Logo%22%3E%0A%20%20%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%2231%22%20fill%3D%22%232f6b3f%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M18%2039.5V29.7l14-11.2%2014%2011.2v9.8a2.5%202.5%200%200%201-2.5%202.5h-23A2.5%202.5%200%200%201%2018%2039.5Z%22%20fill%3D%22%23ffffff%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M23%2030.5l5.1-6.1%204.5%205.2%202.5-3.1%206%207.2H23Z%22%20fill%3D%22%232f6b3f%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M27%2042V33h10v9%22%20fill%3D%22%23ffffff%22%2F%3E%0A%3C%2Fsvg%3E"
-    data-greeting="Grüß Gott! Ich bin Ihr digitaler Assistent des Nationalparks Hohe Tauern. Wie kann ich Ihnen helfen?"
-    data-send-message-text="Frage zum Nationalpark eingeben ..." data-reset-chat-text="Chat zurücksetzen"
-    data-chat-icon="chatBubble" data-button-color="#2f6b3f" data-user-bg-color="#2f6b3f"
-    data-assistant-bg-color="#f3f7f1" data-position="bottom-right" data-window-width="780px" data-window-height="880px"
-    data-text-size="15" data-default-messages="Wanderwege, Tierbeobachtungen, Hütten & Unterkünfte, Anreise"
-    data-no-sponsor="true" src="http://localhost:3001/embed/anythingllm-chat-widget.min.js">
-    </script>
+  <script>
+    const LOGO_SVG = "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%20role%3D%22img%22%20aria-label%3D%22Nationalpark%20Hohe%20Tauern%20Logo%22%3E%0A%20%20%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%2231%22%20fill%3D%22%232f6b3f%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M18%2039.5V29.7l14-11.2%2014%2011.2v9.8a2.5%202.5%200%200%201-2.5%202.5h-23A2.5%202.5%200%200%201%2018%2039.5Z%22%20fill%3D%22%23ffffff%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M23%2030.5l5.1-6.1%204.5%205.2%202.5-3.1%206%207.2H23Z%22%20fill%3D%22%232f6b3f%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M27%2042V33h10v9%22%20fill%3D%22%23ffffff%22%2F%3E%0A%3C%2Fsvg%3E";
+
+    fetch("/config.json")
+      .then(r => r.json())
+      .then(({ embedId }) => {
+        const s = document.createElement("script");
+        s.setAttribute("data-embed-id", embedId);
+        s.setAttribute("data-base-api-url", "/api/embed");
+        s.setAttribute("data-language", "de");
+        s.setAttribute("data-assistant-name", "Nationalpark-Assistent");
+        s.setAttribute("data-brand-image-url", LOGO_SVG);
+        s.setAttribute("data-assistant-icon", LOGO_SVG);
+        s.setAttribute("data-greeting", "Grüß Gott! Ich bin Ihr digitaler Assistent des Nationalparks Hohe Tauern. Wie kann ich Ihnen helfen?");
+        s.setAttribute("data-send-message-text", "Frage zum Nationalpark eingeben ...");
+        s.setAttribute("data-reset-chat-text", "Chat zurücksetzen");
+        s.setAttribute("data-chat-icon", "chatBubble");
+        s.setAttribute("data-button-color", "#2f6b3f");
+        s.setAttribute("data-user-bg-color", "#2f6b3f");
+        s.setAttribute("data-assistant-bg-color", "#f3f7f1");
+        s.setAttribute("data-position", "bottom-right");
+        s.setAttribute("data-window-width", "780px");
+        s.setAttribute("data-window-height", "880px");
+        s.setAttribute("data-text-size", "15");
+        s.setAttribute("data-default-messages", "Wanderwege, Tierbeobachtungen, Hütten & Unterkünfte, Anreise");
+        s.setAttribute("data-no-sponsor", "true");
+        s.src = "/embed/anythingllm-chat-widget.min.js";
+        document.body.appendChild(s);
+      })
+      .catch(() => console.warn("config.json nicht gefunden – Widget nicht geladen."));
+  </script>
 </body>
 
 </html>

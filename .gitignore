@@ -2,9 +2,8 @@
 .env
 *.env.local
 
-# AnythingLLM persistent data
-anythingllm/storage/**
-!anythingllm/storage/.gitkeep
+# Generated at deploy time by setup container
+frontend/config.json
 
 # Node / frontend
 node_modules/

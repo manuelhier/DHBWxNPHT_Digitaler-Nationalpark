@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+BASE="http://anythingllm:3001"
+WORKSPACE_NAME="${ANYTHINGLLM_WORKSPACE_NAME:-hohe-tauern}"
+
+echo "→ Logging in..."
+JWT=$(curl -sf -X POST "$BASE/api/request-token" \
+  -H "Content-Type: application/json" \
+  -d "{\"password\":\"$AUTH_TOKEN\"}" \
+  | jq -r '.token')
+
+# Create a fresh API key
+echo "→ Creating API key..."
+API_KEY=$(curl -sf -X POST "$BASE/api/system/generate-api-key" \
+  -H "Authorization: Bearer $JWT" \
+  | jq -r '.apiKey.secret')
+
+AUTH="Authorization: Bearer $API_KEY"
+
+# Nuke existing workspace
+echo "→ Removing existing workspace (nuke-and-rebuild)..."
+EXISTING_SLUG=$(curl -sf "$BASE/api/v1/workspaces" \
+  -H "$AUTH" \
+  | jq -r --arg name "$WORKSPACE_NAME" '.workspaces[] | select(.name==$name) | .slug // empty')
+
+if [ -n "$EXISTING_SLUG" ]; then
+  curl -sf -X DELETE "$BASE/api/v1/workspace/$EXISTING_SLUG" -H "$AUTH" > /dev/null
+  echo "   Deleted: $EXISTING_SLUG"
+fi
+
+# Create workspace
+echo "→ Creating workspace..."
+SLUG=$(curl -sf -X POST "$BASE/api/v1/workspace/new" \
+  -H "$AUTH" \
+  -H "Content-Type: application/json" \
+  -d "{\"name\":\"$WORKSPACE_NAME\"}" \
+  | jq -r '.workspace.slug')
+
+# Apply system prompt
+echo "→ Applying system prompt..."
+PROMPT=$(cat /config/system-prompt-v1.md)
+curl -sf -X POST "$BASE/api/v1/workspace/$SLUG/update" \
+  -H "$AUTH" \
+  -H "Content-Type: application/json" \
+  -d "{\"openAiPrompt\": $(echo "$PROMPT" | jq -Rs .), \"queryRefusalResponse\": \"Dazu habe ich leider keine Informationen. Ich beantworte nur Fragen zum Nationalpark Hohe Tauern.\", \"chatMode\": \"query\"}" > /dev/null
+
+# Upload documents from /data
+echo "→ Uploading documents..."
+ADDED_DOCS=()
+for f in /data/*; do
+  [ -f "$f" ] || continue
+  echo "   + $(basename "$f")"
+  DOC_LOC=$(curl -sf -X POST "$BASE/api/v1/document/upload" \
+    -H "$AUTH" \
+    -F "file=@$f" \
+    | jq -r '.documents[0].location')
+  ADDED_DOCS+=("\"$DOC_LOC\"")
+done
+
+# Embed documents into workspace
+if [ ${#ADDED_DOCS[@]} -gt 0 ]; then
+  echo "→ Embedding ${#ADDED_DOCS[@]} document(s)..."
+  ADDS=$(IFS=,; echo "${ADDED_DOCS[*]}")
+  curl -sf -X POST "$BASE/api/v1/workspace/$SLUG/update-embeddings" \
+    -H "$AUTH" \
+    -H "Content-Type: application/json" \
+    -d "{\"adds\": [$ADDS], \"deletes\": []}" > /dev/null
+fi
+
+# Create embed config for the chat widget
+echo "→ Creating embed config..."
+EMBED_UUID=$(curl -sf -X POST "$BASE/api/v1/embed/new" \
+  -H "$AUTH" \
+  -H "Content-Type: application/json" \
+  -d "{\"workspace_slug\":\"$SLUG\",\"chat_mode\":\"query\",\"enabled\":true}" \
+  | jq -r '.embed.uuid')
+
+# Write config.json for the frontend to pick up the embed UUID at runtime
+echo "→ Writing /frontend/config.json..."
+cat > /frontend/config.json <<EOF
+{"embedId":"$EMBED_UUID"}
+EOF
+
+echo "✓ Done. Workspace slug: $SLUG, embed UUID: $EMBED_UUID"
