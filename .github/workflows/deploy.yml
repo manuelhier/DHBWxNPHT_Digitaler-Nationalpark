@@ -1,0 +1,37 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Write .env
+        run: |
+          {
+            echo "AUTH_TOKEN=${{ secrets.AUTH_TOKEN }}"
+            echo "JWT_SECRET=${{ secrets.JWT_SECRET }}"
+            echo "GROQ_API_KEY=${{ secrets.GROQ_API_KEY }}"
+            echo "GROQ_MODEL_PREF=${GROQ_MODEL_PREF:-llama-3.1-8b-instant}"
+            echo "ANYTHINGLLM_WORKSPACE_NAME=hohe-tauern"
+            echo "SERVER_PORT=3001"
+            echo "STORAGE_DIR=/app/server/storage"
+            echo "UID=1000"
+            echo "GID=1000"
+            echo "DISABLE_MODEL_CHANGING=true"
+            echo "DISABLE_VIEW_CHAT_HISTORY=1"
+          } > setup/.env
+
+      - name: Deploy
+        run: |
+          docker compose down --remove-orphans
+          docker compose up -d --build
+          docker compose logs -f setup &
+          docker wait npht-setup
+          docker compose logs setup --no-log-prefix --tail 20
