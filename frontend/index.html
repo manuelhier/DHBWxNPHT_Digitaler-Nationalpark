@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nationalpark Hohe Tauern</title>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -15,9 +22,11 @@
     /* ── NAV ── */
     nav {
       position: fixed;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       z-index: 100;
-      background: rgba(255,255,255,0.95);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(8px);
       border-bottom: 1px solid #e5e5e5;
       display: flex;
@@ -40,13 +49,16 @@
     .nav-logo-icon {
       width: 36px;
       height: 36px;
-      background: #2d6a2d;
-      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
-      font-size: 1.1rem;
+      flex: 0 0 auto;
+    }
+
+    .nav-logo-icon img {
+      width: 36px;
+      height: 36px;
+      display: block;
     }
 
     .nav-links {
@@ -63,7 +75,9 @@
       transition: color 0.2s;
     }
 
-    .nav-links a:hover { color: #2d6a2d; }
+    .nav-links a:hover {
+      color: #2d6a2d;
+    }
 
     .nav-actions {
       display: flex;
@@ -94,9 +108,8 @@
     .hero {
       min-height: 100vh;
       background:
-        linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.45) 100%),
-        url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Großglockner_Pasterze_2.jpg/1600px-Großglockner_Pasterze_2.jpg')
-        center/cover no-repeat;
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.45) 100%),
+        url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Großglockner_Pasterze_2.jpg/1600px-Großglockner_Pasterze_2.jpg') center/cover no-repeat;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -186,222 +199,127 @@
       color: white;
     }
 
-    .btn-primary:hover { background: #245424; }
+    .btn-primary:hover {
+      background: #245424;
+    }
 
     .btn-chat {
       background: white;
       color: #1a4a1a;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 0.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
     }
 
     .btn-chat:hover {
       background: #f0f8f0;
       transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
     }
 
-    /* ── CHAT OVERLAY ── */
-    .chat-fab {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      z-index: 200;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: #2d6a2d;
-      color: white;
-      border: none;
-      cursor: pointer;
-      font-size: 1.5rem;
-      box-shadow: 0 4px 20px rgba(45,106,45,0.4);
-      transition: all 0.2s;
+    .btn-chat:focus-visible {
+      outline: 3px solid rgba(125, 204, 125, 0.85);
+      outline-offset: 3px;
+    }
+
+
+    /* ── ANYTHINGLLM WIDGET CUSTOMIZATION ── */
+    #anything-llm-header.npht-anythingllm-header {
+      min-height: 76px !important;
+      background: #2f6b3f !important;
+      border-bottom: none !important;
+      border-radius: 16px 16px 0 0 !important;
+      overflow: visible !important;
+    }
+
+    #anything-llm-header.npht-anythingllm-header>div:first-child {
+      justify-content: flex-start !important;
+      height: 76px !important;
+      padding: 0 72px 0 22px !important;
+    }
+
+    .npht-chat-header-brand {
       display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      min-width: 0;
+    }
+
+    .npht-chat-header-logo-wrap {
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.15);
+      display: inline-flex;
       align-items: center;
       justify-content: center;
+      flex: 0 0 auto;
     }
 
-    .chat-fab:hover {
-      background: #245424;
-      transform: scale(1.08);
-    }
-
-    .chat-fab .fab-label {
-      position: absolute;
-      right: 70px;
-      background: #1a1a1a;
-      color: white;
-      font-size: 0.75rem;
-      padding: 4px 10px;
-      border-radius: 4px;
-      white-space: nowrap;
-      opacity: 0;
-      transition: opacity 0.2s;
-      pointer-events: none;
-    }
-
-    .chat-fab:hover .fab-label { opacity: 1; }
-
-    .chat-overlay {
-      position: fixed;
-      bottom: 6rem;
-      right: 2rem;
-      z-index: 199;
-      width: 380px;
-      height: 560px;
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.18);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      transform: scale(0.9) translateY(20px);
-      opacity: 0;
-      pointer-events: none;
-      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .chat-overlay.open {
-      transform: scale(1) translateY(0);
-      opacity: 1;
-      pointer-events: all;
-    }
-
-    .chat-header {
-      background: #2d6a2d;
-      color: white;
-      padding: 1rem 1.25rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .chat-header-avatar {
-      width: 36px;
-      height: 36px;
-      background: rgba(255,255,255,0.2);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-    }
-
-    .chat-header-text strong {
+    .npht-chat-header-logo {
+      width: 30px !important;
+      height: 30px !important;
+      max-width: 30px !important;
+      max-height: 30px !important;
       display: block;
-      font-size: 0.95rem;
     }
 
-    .chat-header-text span {
-      font-size: 0.75rem;
-      opacity: 0.8;
-    }
-
-    .chat-messages {
-      flex: 1;
-      overflow-y: auto;
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .message {
-      max-width: 85%;
-      padding: 0.6rem 0.9rem;
-      border-radius: 12px;
-      font-size: 0.875rem;
-      line-height: 1.5;
-    }
-
-    .message.bot {
-      background: #f0f4f0;
-      color: #1a1a1a;
-      align-self: flex-start;
-      border-bottom-left-radius: 4px;
-    }
-
-    .message.user {
-      background: #2d6a2d;
+    .npht-chat-header-copy {
+      min-width: 0;
       color: white;
-      align-self: flex-end;
-      border-bottom-right-radius: 4px;
+      line-height: 1.2;
+      text-align: left;
     }
 
-    .message.typing {
-      background: #f0f4f0;
-      align-self: flex-start;
-      color: #666;
-      font-style: italic;
-    }
-
-    .chat-suggestions {
-      padding: 0 1rem 0.5rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
-
-    .suggestion {
-      background: #f0f4f0;
-      border: 1px solid #d4e4d4;
-      color: #2d6a2d;
-      font-size: 0.75rem;
-      padding: 4px 10px;
-      border-radius: 20px;
-      cursor: pointer;
-      transition: all 0.15s;
+    .npht-chat-header-title {
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
       white-space: nowrap;
     }
 
-    .suggestion:hover {
-      background: #2d6a2d;
-      color: white;
-      border-color: #2d6a2d;
+    .npht-chat-header-subtitle {
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 13px;
+      font-weight: 500;
+      margin-top: 5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    .chat-input-row {
-      border-top: 1px solid #e5e5e5;
-      padding: 0.75rem;
-      display: flex;
-      gap: 0.5rem;
+    #anything-llm-header.npht-anythingllm-header>div:nth-child(2) {
+      right: 10px !important;
+      padding-left: 0 !important;
+      padding-right: 8px !important;
     }
 
-    .chat-input {
-      flex: 1;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 0.5rem 0.75rem;
-      font-size: 0.875rem;
-      outline: none;
-      transition: border-color 0.2s;
+    #anything-llm-header.npht-anythingllm-header button {
+      color: rgba(255, 255, 255, 0.9) !important;
     }
 
-    .chat-input:focus { border-color: #2d6a2d; }
-
-    .chat-send {
-      background: #2d6a2d;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      width: 36px;
-      height: 36px;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: background 0.2s;
+    #anything-llm-header.npht-anythingllm-header button:hover {
+      background: rgba(255, 255, 255, 0.12) !important;
     }
 
-    .chat-send:hover { background: #245424; }
+    #anything-llm-header.npht-anythingllm-header button svg {
+      color: rgba(255, 255, 255, 0.9) !important;
+      fill: currentColor !important;
+    }
   </style>
 </head>
+
 <body>
 
   <!-- NAV -->
   <nav>
     <a class="nav-logo" href="#">
-      <div class="nav-logo-icon">🏔</div>
+      <div class="nav-logo-icon"><img
+          src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%20role%3D%22img%22%20aria-label%3D%22Nationalpark%20Hohe%20Tauern%20Logo%22%3E%0A%20%20%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%2231%22%20fill%3D%22%232f6b3f%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M18%2039.5V29.7l14-11.2%2014%2011.2v9.8a2.5%202.5%200%200%201-2.5%202.5h-23A2.5%202.5%200%200%201%2018%2039.5Z%22%20fill%3D%22%23ffffff%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M23%2030.5l5.1-6.1%204.5%205.2%202.5-3.1%206%207.2H23Z%22%20fill%3D%22%232f6b3f%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M27%2042V33h10v9%22%20fill%3D%22%23ffffff%22%2F%3E%0A%3C%2Fsvg%3E"
+          alt="Nationalpark Hohe Tauern Logo" /></div>
       <span>Nationalpark<br>Hohe Tauern</span>
     </a>
     <ul class="nav-links">
@@ -444,83 +362,96 @@
       </div>
       <div class="hero-buttons">
         <a class="btn btn-primary" href="#">Tourenangebote entdecken</a>
-        <button class="btn btn-chat" onclick="toggleChat()">
-          💬 Park-Assistent fragen
+        <button class="btn btn-chat" id="open-anythingllm-chat" type="button" onclick="openAnythingLLMChat()">
+          💬 Digitalen Nationalpark-Assistent fragen
         </button>
       </div>
     </div>
   </section>
 
-  <!-- FLOATING CHAT BUTTON -->
-  <button class="chat-fab" onclick="toggleChat()">
-    <span class="fab-label">Park-Assistent</span>
-    💬
-  </button>
-
-  <!-- CHAT OVERLAY -->
-  <div class="chat-overlay" id="chatOverlay">
-    <div class="chat-header">
-      <div class="chat-header-avatar">🏔</div>
-      <div class="chat-header-text">
-        <strong>Park-Assistent</strong>
-        <span>Nationalpark Hohe Tauern</span>
-      </div>
-    </div>
-    <div class="chat-messages" id="chatMessages">
-      <div class="message bot">
-        Grüß Gott! Ich bin Ihr digitaler Park-Assistent. Wie kann ich Ihnen helfen?
-      </div>
-    </div>
-    <div class="chat-suggestions">
-      <span class="suggestion" onclick="sendSuggestion(this)">Wanderwege</span>
-      <span class="suggestion" onclick="sendSuggestion(this)">Tierbeobachtungen</span>
-      <span class="suggestion" onclick="sendSuggestion(this)">Hütten & Unterkünfte</span>
-      <span class="suggestion" onclick="sendSuggestion(this)">Anreise</span>
-    </div>
-    <div class="chat-input-row">
-      <input class="chat-input" id="chatInput" type="text"
-        placeholder="Ihre Frage..." onkeydown="if(event.key==='Enter') sendMessage()" />
-      <button class="chat-send" onclick="sendMessage()">➤</button>
-    </div>
-  </div>
-
   <script>
-    let isOpen = false;
+    const ANYTHINGLLM_CHAT_OPEN_KEY = "___anythingllm-chat-widget-open___";
+    const NATIONALPARK_LOGO = "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%20role%3D%22img%22%20aria-label%3D%22Nationalpark%20Hohe%20Tauern%20Logo%22%3E%0A%20%20%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%2231%22%20fill%3D%22%232f6b3f%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M18%2039.5V29.7l14-11.2%2014%2011.2v9.8a2.5%202.5%200%200%201-2.5%202.5h-23A2.5%202.5%200%200%201%2018%2039.5Z%22%20fill%3D%22%23ffffff%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M23%2030.5l5.1-6.1%204.5%205.2%202.5-3.1%206%207.2H23Z%22%20fill%3D%22%232f6b3f%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M27%2042V33h10v9%22%20fill%3D%22%23ffffff%22%2F%3E%0A%3C%2Fsvg%3E";
 
-    function toggleChat() {
-      isOpen = !isOpen;
-      document.getElementById('chatOverlay').classList.toggle('open', isOpen);
+    // Der AnythingLLM-Embed merkt sich den offenen Zustand in localStorage.
+    // Für diese Seite soll der Chat beim Seitenstart immer geschlossen bleiben.
+    window.localStorage.removeItem(ANYTHINGLLM_CHAT_OPEN_KEY);
+
+    function getAnythingLLMOpenButton() {
+      return document.getElementById("anything-llm-embed-chat-button");
     }
 
-    function appendMessage(text, type) {
-      const el = document.createElement('div');
-      el.className = `message ${type}`;
-      el.textContent = text;
-      const container = document.getElementById('chatMessages');
-      container.appendChild(el);
-      container.scrollTop = container.scrollHeight;
-      return el;
+    function openAnythingLLMChat() {
+      // Wenn der Chat bereits geöffnet ist, nichts weiter tun.
+      if (document.getElementById("anything-llm-header")) {
+        return;
+      }
+
+      const openButton = getAnythingLLMOpenButton();
+      if (openButton) {
+        openButton.click();
+        return;
+      }
+
+      // Das Widget-Script lädt asynchron. Falls der Hero-Button sehr früh geklickt wird,
+      // warten wir kurz auf den offiziellen AnythingLLM-Button und lösen dann dessen Klick aus.
+      let attempts = 0;
+      const waitForWidget = window.setInterval(() => {
+        const delayedButton = getAnythingLLMOpenButton();
+        attempts += 1;
+
+        if (delayedButton) {
+          window.clearInterval(waitForWidget);
+          delayedButton.click();
+        }
+
+        if (attempts >= 60) {
+          window.clearInterval(waitForWidget);
+          console.warn("AnythingLLM Chat Widget konnte nicht gefunden werden. Läuft AnythingLLM unter http://localhost:3001?");
+        }
+      }, 100);
     }
 
-    function sendMessage() {
-      const input = document.getElementById('chatInput');
-      const text = input.value.trim();
-      if (!text) return;
-      input.value = '';
-      appendMessage(text, 'user');
+    function customizeAnythingLLMHeader() {
+      const header = document.getElementById("anything-llm-header");
+      if (!header) return;
 
-      // Placeholder — replace with actual AnythingLLM API call
-      const typing = appendMessage('…', 'typing');
-      setTimeout(() => {
-        typing.remove();
-        appendMessage('Diese Funktion wird bald mit dem Park-Assistenten verbunden.', 'bot');
-      }, 1000);
+      header.classList.add("npht-anythingllm-header");
+
+      const logoContainer = header.querySelector(":scope > div:first-child");
+      if (logoContainer && !logoContainer.querySelector(".npht-chat-header-brand")) {
+        logoContainer.innerHTML = `
+          <div class="npht-chat-header-brand" aria-label="Park-Assistent Nationalpark Hohe Tauern">
+            <span class="npht-chat-header-logo-wrap">
+              <img class="npht-chat-header-logo" src="${NATIONALPARK_LOGO}" alt="Nationalpark Hohe Tauern Logo" />
+            </span>
+            <span class="npht-chat-header-copy">
+              <span class="npht-chat-header-title">Park-Assistent</span>
+              <span class="npht-chat-header-subtitle">Nationalpark Hohe Tauern</span>
+            </span>
+          </div>
+        `;
+      }
     }
 
-    function sendSuggestion(el) {
-      document.getElementById('chatInput').value = el.textContent;
-      sendMessage();
-    }
+    const anythingLLMHeaderObserver = new MutationObserver(customizeAnythingLLMHeader);
+    document.addEventListener("DOMContentLoaded", () => {
+      customizeAnythingLLMHeader();
+      anythingLLMHeaderObserver.observe(document.body, { childList: true, subtree: true });
+    });
   </script>
+
+  <script data-embed-id="3e95dd9d-61a5-4b05-824a-86825066379e" data-base-api-url="http://localhost:3001/api/embed"
+    data-language="de" data-assistant-name="Nationalpark-Assistent"
+    data-brand-image-url="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%20role%3D%22img%22%20aria-label%3D%22Nationalpark%20Hohe%20Tauern%20Logo%22%3E%0A%20%20%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%2231%22%20fill%3D%22%232f6b3f%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M18%2039.5V29.7l14-11.2%2014%2011.2v9.8a2.5%202.5%200%200%201-2.5%202.5h-23A2.5%202.5%200%200%201%2018%2039.5Z%22%20fill%3D%22%23ffffff%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M23%2030.5l5.1-6.1%204.5%205.2%202.5-3.1%206%207.2H23Z%22%20fill%3D%22%232f6b3f%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M27%2042V33h10v9%22%20fill%3D%22%23ffffff%22%2F%3E%0A%3C%2Fsvg%3E"
+    data-assistant-icon="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%20role%3D%22img%22%20aria-label%3D%22Nationalpark%20Hohe%20Tauern%20Logo%22%3E%0A%20%20%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%2231%22%20fill%3D%22%232f6b3f%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M18%2039.5V29.7l14-11.2%2014%2011.2v9.8a2.5%202.5%200%200%201-2.5%202.5h-23A2.5%202.5%200%200%201%2018%2039.5Z%22%20fill%3D%22%23ffffff%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M23%2030.5l5.1-6.1%204.5%205.2%202.5-3.1%206%207.2H23Z%22%20fill%3D%22%232f6b3f%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M27%2042V33h10v9%22%20fill%3D%22%23ffffff%22%2F%3E%0A%3C%2Fsvg%3E"
+    data-greeting="Grüß Gott! Ich bin Ihr digitaler Assistent des Nationalparks Hohe Tauern. Wie kann ich Ihnen helfen?"
+    data-send-message-text="Frage zum Nationalpark eingeben ..." data-reset-chat-text="Chat zurücksetzen"
+    data-chat-icon="chatBubble" data-button-color="#2f6b3f" data-user-bg-color="#2f6b3f"
+    data-assistant-bg-color="#f3f7f1" data-position="bottom-right" data-window-width="780px" data-window-height="880px"
+    data-text-size="15" data-default-messages="Wanderwege, Tierbeobachtungen, Hütten & Unterkünfte, Anreise"
+    data-no-sponsor="true" src="http://localhost:3001/embed/anythingllm-chat-widget.min.js">
+    </script>
 </body>
+
 </html>
