@@ -25,7 +25,9 @@ cd DHBWxNPHT_Digitaler-Nationalpark
 
 Die `.env`-Datei enthält API-Keys und Secrets und wird **nicht** im Repository gespeichert. Sie wird separat bereitgestellt.
 
-> Die Datei muss unter `setup/.env` liegen – genau dort erwartet Docker Compose sie.
+> Die Datei muss im Projekt-Root liegen (`.env`) – genau dort erwartet Docker Compose sie.
+
+Als Vorlage dient `.env.example` im Root des Repositories.
 
 ### 3. Alle Container starten
 
@@ -39,7 +41,7 @@ Docker Compose startet drei Dienste:
 |---|---|
 | `npht-anythingllm` | RAG-Backend (AnythingLLM) auf Port 3001 |
 | `npht-setup` | Richtet Workspace, Dokumente und Chat-Widget automatisch ein, beendet sich danach |
-| `npht-frontend` | Nginx-Server mit dem Chat-Frontend auf Port 3002 |
+| `npht-frontend` | Nginx-Server mit dem Chat-Frontend auf Port 80 |
 
 Der Setup-Container wartet automatisch, bis AnythingLLM bereit ist, und führt dann folgende Schritte aus:
 - Workspace `hohe-tauern` erstellen
@@ -62,7 +64,7 @@ Erwartete Ausgabe am Ende: `✓ Done. Workspace slug: hohe-tauern, embed UUID: <
 
 | Dienst | URL |
 |---|---|
-| Chat-Frontend | <http://localhost:3002> |
+| Chat-Frontend | <http://localhost> |
 | AnythingLLM Admin UI | <http://localhost:3001> |
 | API-Dokumentation (Swagger) | <http://localhost:3001/api/docs> |
 
@@ -96,25 +98,21 @@ Da der Setup-Container bei jedem Start den Workspace neu anlegt, wird dabei auch
 
 ```
 docker-compose.yml      # Orchestriert alle drei Dienste
+.env                    # Secrets – nicht committen (gitignored)
+.env.example            # Vorlage mit allen verfügbaren Variablen
 
 anythingllm/
   config/               # Versionierte System-Prompts (deutsch)
-  env.example           # Vorlage mit allen verfügbaren Variablen
+  data/                 # Quelldokumente für RAG-Ingestion
 
 setup/
   setup.sh              # Automatisches Setup-Skript
   Dockerfile
-  .env                  # Secrets – nicht committen (gitignored)
 
 frontend/
-  index.html            # Chat-Frontend (via Nginx auf Port 3002)
+  index.html            # Chat-Frontend (via Nginx auf Port 80)
+  nginx.conf            # Nginx-Konfiguration
   config.json           # Generiert vom Setup-Container – nicht committen (gitignored)
-
-config/
-  nginx.conf            # Nginx-Konfiguration (proxied /api/ und /embed/ zu AnythingLLM)
-
-anythingllm/
-  data/                 # Quelldokumente für RAG-Ingestion
 ```
 
 ---
@@ -131,7 +129,7 @@ docker logs npht-setup
 
 Danach ggf. neu starten: `docker compose up -d`
 
-**Port 3001 oder 3002 bereits belegt:**
+**Port 80 oder 3001 bereits belegt:**
 
 ```bash
 docker ps  # prüfen welcher Container den Port belegt
@@ -140,7 +138,7 @@ docker ps  # prüfen welcher Container den Port belegt
 **`.env` wurde versehentlich committet:**
 
 ```bash
-git rm --cached setup/.env
+git rm --cached .env
 git commit -m "remove .env from tracking"
 ```
 
