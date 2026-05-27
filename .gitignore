@@ -5,6 +5,9 @@
 # Generated at deploy time by setup container
 frontend/config.json
 
+# TLS certificates
+frontend/certs/
+
 # Node / frontend
 node_modules/
 dist/

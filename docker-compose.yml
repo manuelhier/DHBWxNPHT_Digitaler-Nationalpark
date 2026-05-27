@@ -22,9 +22,11 @@ services:
     image: nginx:alpine
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - ./frontend/nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - ./frontend:/usr/share/nginx/html:ro
+      - ./frontend/certs:/etc/nginx/certs:ro
     depends_on:
       - anythingllm
     restart: unless-stopped
