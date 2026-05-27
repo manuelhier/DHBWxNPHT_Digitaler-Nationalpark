@@ -1,6 +1,6 @@
 # Secrets — never commit
 .env
-*.env.local
+.env.local
 
 # Generated at deploy time by setup container
 frontend/config.json
