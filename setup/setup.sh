@@ -3,6 +3,25 @@ set -euo pipefail
 
 BASE="http://anythingllm:3001"
 WORKSPACE_NAME="${ANYTHINGLLM_WORKSPACE_NAME:-hohe-tauern}"
+OLLAMA_BASE="${OLLAMA_BASE_PATH:-http://ollama:11434}"
+MODEL="${OLLAMA_MODEL_PREF:-MichelRosselli/apertus:8b-instruct-2509-q4_k_m}"
+
+if [ "${LLM_PROVIDER:-}" = "ollama" ]; then
+  echo "→ Waiting for Ollama..."
+  until curl -sf "$OLLAMA_BASE/api/tags" > /dev/null 2>&1; do sleep 3; done
+
+  echo "→ Checking model: $MODEL..."
+  if curl -sf "$OLLAMA_BASE/api/tags" | jq -r '.models[].name' | grep -qF "$MODEL"; then
+    echo "   Already present, skipping pull"
+  else
+    echo "   Pulling model (first run: ~5 GB, may take several minutes)..."
+    curl -sf -X POST "$OLLAMA_BASE/api/pull" \
+      -H "Content-Type: application/json" \
+      -d "{\"name\":\"$MODEL\"}" \
+      -o /dev/null
+    echo "✓ Model ready"
+  fi
+fi
 
 echo "→ Logging in..."
 JWT=$(curl -sf -X POST "$BASE/api/request-token" \

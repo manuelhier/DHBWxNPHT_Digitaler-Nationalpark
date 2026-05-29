@@ -1,4 +1,17 @@
 services:
+  ollama:
+    image: ollama/ollama
+    container_name: npht-ollama
+    profiles: [local-inference]
+    volumes:
+      - npht-ollama_models:/root/.ollama
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:11434/api/tags > /dev/null"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
   anythingllm:
     image: mintplexlabs/anythingllm
     container_name: npht-anythingllm
@@ -47,3 +60,4 @@ services:
 
 volumes:
   npht-anythingllm_storage:
+  npht-ollama_models:
