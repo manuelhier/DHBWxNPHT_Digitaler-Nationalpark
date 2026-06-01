@@ -37,7 +37,7 @@ Als Vorlage dient `.env.example` im Root des Repositories.
 docker compose up -d
 ```
 
-Startet alle Dienste mit `nginx.dev.conf` — kein SSL, Frontend unter `http://localhost`, Admin UI unter `http://localhost:3001`.
+Startet alle Dienste mit `nginx.conf` — kein SSL, Frontend unter `http://localhost`, Admin UI unter `http://localhost:3001`.
 
 **Server (Produktion):**
 
