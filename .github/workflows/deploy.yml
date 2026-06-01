@@ -15,7 +15,7 @@ jobs:
       - name: Deploy
         run: |
           cd ~/DHBWxNPHT_Digitaler-Nationalpark
-          docker compose down --remove-orphans
-          docker compose up -d --build
+          docker compose -f docker-compose.yml -f docker-compose.prod.yml down --remove-orphans
+          docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
           docker wait npht-setup
           docker compose logs setup --no-log-prefix --tail 20

@@ -29,11 +29,23 @@ Die `.env`-Datei enthält API-Keys und Secrets und wird **nicht** im Repository 
 
 Als Vorlage dient `.env.example` im Root des Repositories.
 
-### 3. Alle Container starten
+### 3. Container starten
+
+**Lokal (Entwicklung):**
 
 ```bash
 docker compose up -d
 ```
+
+Startet alle Dienste mit `nginx.dev.conf` — kein SSL, Frontend unter `http://localhost`, Admin UI unter `http://localhost:3001`.
+
+**Server (Produktion):**
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
+```
+
+Startet mit `nginx.conf` — HTTPS auf Port 443, Subdomains `demo.npht.dh-karlsruhe.de` und `admin.npht.dh-karlsruhe.de`. SSL-Zertifikate müssen vorher unter `/etc/ssl/npht/` auf dem Server abgelegt sein.
 
 Docker Compose startet drei Dienste:
 
@@ -97,7 +109,8 @@ Da der Setup-Container bei jedem Start den Workspace neu anlegt, wird dabei auch
 ## Projektstruktur
 
 ```
-docker-compose.yml      # Orchestriert alle drei Dienste
+docker-compose.yml      # Basis-Konfiguration + lokale Entwicklung (HTTP)
+docker-compose.prod.yml # Produktions-Overrides (HTTPS, Subdomains)
 .env                    # Secrets – nicht committen (gitignored)
 .env.example            # Vorlage mit allen verfügbaren Variablen
 
@@ -110,8 +123,9 @@ setup/
   Dockerfile
 
 frontend/
-  index.html            # Chat-Frontend (via Nginx auf Port 80)
-  nginx.conf            # Nginx-Konfiguration
+  index.html            # Chat-Frontend
+  nginx.prod.conf       # Nginx-Konfiguration (Produktion, HTTPS)
+  nginx.conf            # Nginx-Konfiguration (Entwicklung, HTTP)
   config.json           # Generiert vom Setup-Container – nicht committen (gitignored)
 ```
 
