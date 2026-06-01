@@ -23,6 +23,20 @@ if [ "${LLM_PROVIDER:-}" = "ollama" ]; then
   fi
 fi
 
+if [ "${AUTO_GENERATE_CERTS:-true}" = "true" ] && [ ! -f /certs/key.pem ]; then
+  mkdir -p /certs
+  echo "→ Generating self-signed certificate..."
+  openssl req -x509 -nodes -newkey rsa:2048 -days 365 \
+    -keyout /certs/key.pem \
+    -out /certs/cert.pem \
+    -subj "/CN=localhost" 2>/dev/null
+  echo "✓ Self-signed certificate generated"
+elif [ -f /certs/key.pem ]; then
+  echo "✓ SSL certs identified (skipping creation)"
+else
+  echo "→ SSL cert auto-generation disabled (AUTO_GENERATE_CERTS=false)"
+fi
+
 echo "→ Logging in..."
 JWT=$(curl -sf -X POST "$BASE/api/request-token" \
   -H "Content-Type: application/json" \
