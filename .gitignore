@@ -3,7 +3,7 @@
 .env.local
 
 # Generated at deploy time by setup container
-frontend/config.json
+frontend/public/config.json
 
 # Node / frontend
 node_modules/

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nationalpark Hohe Tauern</title>
+  <link rel="icon" type="image/png" href="/assets/favicon.png" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+
+  <!-- FEEDBACK TRIGGER -->
+  <button class="feedback-trigger npht-tooltip"
+          data-tooltip="Feedback geben"
+          onclick="toggleFeedback()"
+          aria-label="Feedback geben">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+            fill="#eaf4ec" stroke="#2f6b3f" stroke-width="1.5" stroke-linejoin="round"/>
+      <path d="M12 7l1.09 2.26L15.5 9.5l-1.75 1.7.41 2.4L12 12.5l-2.16 1.1.41-2.4L8.5 9.5l2.41-.24z"
+            fill="#f5a623" stroke="#e8920a" stroke-width="0.5" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <!-- PAGE OVERLAY (chat + feedback) -->
+  <div id="page-overlay" class="page-overlay hidden"></div>
+
+  <!-- FEEDBACK PANEL -->
+  <div id="feedback-panel" class="feedback-panel hidden">
+    <div class="feedback-header">
+      <span class="feedback-header-title">Ihre Meinung zählt!</span>
+      <button class="feedback-close" onclick="closeFeedback()" aria-label="Schließen">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <p class="feedback-desc">
+      Wie hilfreich war <strong>FragForrest</strong>? Scannen Sie den QR-Code und nehmen Sie
+      an unserer kurzen Umfrage teil – dauert nur eine Minute.
+    </p>
+    <img src="./assets/feedback-qr.jpeg" alt="Feedback-Umfrage QR-Code" class="feedback-qr" />
+    <span class="feedback-badge">DHBW × Nationalpark Hohe Tauern</span>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-upper">
+      <nav class="hero-nav">
+        <img src="./assets/npht-logo.png" class="hero-nav-logo" alt="Nationalpark Hohe Tauern" />
+        <span class="hero-nav-sep">×</span>
+        <img src="./assets/dhbw-logo.svg" class="hero-nav-logo logo-dhbw" alt="DHBW" />
+      </nav>
+    </div>
+
+    <div class="hero-content">
+      <p class="hero-eyebrow">Nationalpark Hohe Tauern · Österreich</p>
+      <h1 class="hero-title">Raum für <em>Wissen</em> und <em>Erlebnis</em></h1>
+      <p class="hero-sub">
+        Eine der großartigsten Hochgebirgslandschaften der Erde –
+        entdecken Sie Gletscher, Wildtiere und alpine Vielfalt.
+      </p>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-value">1.856 km²</div>
+          <div class="stat-label">unberührte Natur</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">15.000</div>
+          <div class="stat-label">Tierarten</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">3.798 m</div>
+          <div class="stat-label">Großglockner</div>
+        </div>
+      </div>
+      <div class="hero-buttons">
+        <button class="btn-chat" id="open-anythingllm-chat" type="button" onclick="openAnythingLLMChat()">
+          💬 Mit FragForrest chatten
+        </button>
+      </div>
+    </div>
+
+    <div class="hero-lower"></div>
+  </section>
+
+  <script src="/main.js"></script>
+</body>
+</html>

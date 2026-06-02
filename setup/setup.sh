@@ -97,8 +97,8 @@ EMBED_UUID=$(curl -sf -X POST "$BASE/api/v1/embed/new" \
   | jq -r '.embed.uuid')
 
 # Write config.json for the frontend to pick up the embed UUID at runtime
-echo "→ Writing /frontend/config.json..."
-cat > /frontend/config.json <<EOF
+echo "→ Writing /frontend/public/config.json..."
+cat > /frontend/public/config.json <<EOF
 {"embedId":"$EMBED_UUID"}
 EOF
 
