@@ -88,18 +88,9 @@ if [ ${#ADDED_DOCS[@]} -gt 0 ]; then
     -d "{\"adds\": [$ADDS], \"deletes\": []}" > /dev/null
 fi
 
-# Create embed config for the chat widget
-echo "→ Creating embed config..."
-EMBED_UUID=$(curl -sf -X POST "$BASE/api/v1/embed/new" \
-  -H "$AUTH" \
-  -H "Content-Type: application/json" \
-  -d "{\"workspace_slug\":\"$SLUG\",\"chat_mode\":\"query\",\"enabled\":true}" \
-  | jq -r '.embed.uuid')
+# Write nginx auth include so frontend nginx can inject the Authorization header
+echo "→ Writing nginx auth include to /run/config/anythingllm-auth.conf..."
+mkdir -p /run/config
+printf 'proxy_set_header Authorization "Bearer %s";\n' "$API_KEY" > /run/config/anythingllm-auth.conf
 
-# Write config.json for the frontend to pick up the embed UUID at runtime
-echo "→ Writing /frontend/public/config.json..."
-cat > /frontend/public/config.json <<EOF
-{"embedId":"$EMBED_UUID"}
-EOF
-
-echo "✓ Done. Workspace slug: $SLUG, embed UUID: $EMBED_UUID"
+echo "✓ Done. Workspace slug: $SLUG"

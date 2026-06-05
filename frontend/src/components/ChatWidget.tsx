@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import {
   AssistantRuntimeProvider,
   useLocalRuntime,
@@ -8,13 +8,12 @@ import {
   ComposerPrimitive,
   ActionBarPrimitive,
 } from '@assistant-ui/react'
-import { groqAdapter, submitFeedback } from '../lib/adapter'
+import { createAdapter, submitFeedback } from '../lib/adapter'
 
 const SUGGESTIONS = ['Wanderwege', 'Tierbeobachtungen', 'Hütten & Unterkünfte', 'Anreise']
 const DEFAULT_W = 580
 const DEFAULT_H = 820
 
-const newId = () => crypto.randomUUID().slice(0, 8).toUpperCase()
 
 // ── Message sub-components ────────────────────────────────────────────────────
 
@@ -27,10 +26,6 @@ const MessageTimestamp = () => {
   )
 }
 
-const StreamingCursor = () => {
-  const isRunning = useAuiState((s) => s.message.status?.type === 'running')
-  return isRunning ? <span className="chat-cursor" /> : null
-}
 
 const UserMessage = () => (
   <MessagePrimitive.Root className="chat-message chat-message-user">
@@ -49,6 +44,10 @@ const AssistantMessage = () => {
   const messageId = useAuiState((s) => s.message.id)
   const status = useAuiState((s) => s.message.status)
   const isError = status?.type === 'incomplete' && status.reason === 'error'
+  const isRunning = status?.type === 'running'
+  const hasContent = useAuiState((s) =>
+    s.message.content.some((c) => c.type === 'text' && (c as { type: 'text'; text: string }).text.length > 0)
+  )
   const [voted, setVoted] = useState<'up' | 'down' | null>(null)
 
   const handleFeedback = (rating: 'up' | 'down') => {
@@ -62,10 +61,15 @@ const AssistantMessage = () => {
       <img src="/assets/forrest.gif" className="chat-message-avatar" alt="Forrest" />
       <div className="chat-message-body">
         <div className={`chat-bubble ${isError ? 'chat-bubble-error' : 'chat-bubble-assistant'}`}>
-          <MessagePrimitive.Content />
-          {isError
-            ? <code className="chat-error-code">Antwort fehlgeschlagen – bitte erneut versuchen.</code>
-            : <StreamingCursor />}
+          {isRunning && !hasContent
+            ? <span className="chat-typing"><span /><span /><span /></span>
+            : <>
+                <MessagePrimitive.Content />
+                {isError
+                  ? <code className="chat-error-code">Antwort fehlgeschlagen – bitte erneut versuchen.</code>
+                  : null}
+              </>
+          }
         </div>
         <div className="chat-message-meta">
           <MessageTimestamp />
@@ -134,7 +138,8 @@ const WelcomeScreen = () => (
 
 interface PanelProps {
   onClose: () => void
-  conversationId: string
+  conversationId: string | null
+  onConversationId: (id: string) => void
   copied: boolean
   onCopyId: () => void
   size: { w: number; h: number }
@@ -142,8 +147,11 @@ interface PanelProps {
   onReset: () => void
 }
 
-function ChatPanel({ onClose, conversationId, copied, onCopyId, size, onSetSize, onReset }: PanelProps) {
-  const runtime = useLocalRuntime(groqAdapter)
+function ChatPanel({ onClose, conversationId, onConversationId, copied, onCopyId, size, onSetSize, onReset }: PanelProps) {
+  const onConversationIdRef = useRef(onConversationId)
+  onConversationIdRef.current = onConversationId
+  const adapter = useMemo(() => createAdapter((id) => onConversationIdRef.current(id)), [])
+  const runtime = useLocalRuntime(adapter)
 
   const handleResizeMouseDown = (e: React.MouseEvent) => {
     e.preventDefault()
@@ -211,18 +219,18 @@ function ChatPanel({ onClose, conversationId, copied, onCopyId, size, onSetSize,
 
           {/* Input */}
           <ComposerPrimitive.Root className="chat-input-area">
-              <ComposerPrimitive.Input
-                className="chat-input"
-                placeholder="Frage zum Nationalpark eingeben ..."
-                autoFocus
-                rows={1}
-              />
               <button className="chat-mic-btn" disabled title="Spracheingabe (demnächst)" aria-label="Spracheingabe">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
                   <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/>
                 </svg>
               </button>
+              <ComposerPrimitive.Input
+                className="chat-input"
+                placeholder="Frage zum Nationalpark eingeben ..."
+                autoFocus
+                rows={1}
+              />
               <ComposerPrimitive.Send className="chat-send-btn" aria-label="Senden">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="22" y1="2" x2="11" y2="13" /><polygon points="22 2 15 22 11 13 2 9 22 2" fill="currentColor" stroke="none" />
@@ -233,15 +241,17 @@ function ChatPanel({ onClose, conversationId, copied, onCopyId, size, onSetSize,
 
         {/* Footer */}
         <div className="chat-footer">
-          <span className="chat-footer-id" onClick={onCopyId} title="Kopieren">
-            Conversation ID: {conversationId}{copied ? ' ✓' : ''}
-          </span>
           <button className="chat-footer-new" onClick={onReset}>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" width="11" height="11">
               <polyline points="1 4 1 10 7 10" /><path d="M3.51 15a9 9 0 1 0 .49-4.95" />
             </svg>
             Neuer Chat
           </button>
+          {conversationId && (
+            <span className="chat-footer-id" onClick={onCopyId} title="Kopieren">
+              ID: {conversationId}{copied ? ' ✓' : ''}
+            </span>
+          )}
         </div>
       </div>
     </AssistantRuntimeProvider>
@@ -258,12 +268,13 @@ interface Props {
 
 export default function ChatWidget({ open, onOpen, onClose }: Props) {
   const [chatKey, setChatKey] = useState(0)
-  const [conversationId, setConversationId] = useState(newId)
+  const [conversationId, setConversationId] = useState<string | null>(null)
   const [size, setSize] = useState({ w: DEFAULT_W, h: DEFAULT_H })
   const [copied, setCopied] = useState(false)
 
-  const handleReset = () => { setChatKey(k => k + 1); setConversationId(newId()) }
+  const handleReset = () => { setChatKey(k => k + 1); setConversationId(null) }
   const handleCopyId = () => {
+    if (!conversationId) return
     navigator.clipboard.writeText(conversationId)
     setCopied(true)
     setTimeout(() => setCopied(false), 1500)
@@ -284,6 +295,7 @@ export default function ChatWidget({ open, onOpen, onClose }: Props) {
       key={chatKey}
       onClose={onClose}
       conversationId={conversationId}
+      onConversationId={setConversationId}
       copied={copied}
       onCopyId={handleCopyId}
       size={size}
