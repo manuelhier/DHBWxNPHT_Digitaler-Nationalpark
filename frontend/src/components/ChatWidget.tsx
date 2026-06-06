@@ -8,7 +8,10 @@ import {
   ComposerPrimitive,
   ActionBarPrimitive,
 } from '@assistant-ui/react'
+import { MarkdownTextPrimitive } from '@assistant-ui/react-markdown'
 import { createAdapter, submitFeedback } from '../lib/adapter'
+
+const MarkdownText = (props: { text: string }) => <MarkdownTextPrimitive {...(props as object)} />
 
 const SUGGESTIONS = ['Wanderwege', 'Tierbeobachtungen', 'Hütten & Unterkünfte', 'Anreise']
 const DEFAULT_W = 580
@@ -64,7 +67,7 @@ const AssistantMessage = () => {
           {isRunning && !hasContent
             ? <span className="chat-typing"><span /><span /><span /></span>
             : <>
-                <MessagePrimitive.Content />
+                <MessagePrimitive.Content components={{ Text: MarkdownText }} />
                 {isError
                   ? <code className="chat-error-code">Antwort fehlgeschlagen – bitte erneut versuchen.</code>
                   : null}
