@@ -30,14 +30,13 @@ services:
       timeout: 5s
       retries: 12
 
-  nginx:
+  frontend:
     container_name: npht-frontend
-    image: nginx:alpine
+    build: ./frontend
     ports:
       - "80:80"
     volumes:
-      - ./frontend/nginx.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./frontend/public:/usr/share/nginx/html:ro
+      - npht-config:/run/config:ro
     depends_on:
       anythingllm:
         condition: service_healthy
@@ -53,7 +52,7 @@ services:
     volumes:
       - ./anythingllm/data:/data:ro
       - ./anythingllm/config:/config:ro
-      - ./frontend:/frontend
+      - npht-config:/run/config
     depends_on:
       anythingllm:
         condition: service_healthy
@@ -62,3 +61,4 @@ services:
 volumes:
   npht-anythingllm_storage:
   npht-ollama_models:
+  npht-config:

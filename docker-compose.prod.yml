@@ -4,6 +4,10 @@ services:
       - ./frontend/nginx.prod.conf:/etc/nginx/conf.d/default.conf:ro
       - ./frontend/public:/usr/share/nginx/html:ro
       - /etc/ssl/npht:/etc/nginx/certs:ro
+      - npht-config:/run/config:ro
     ports:
       - "80:80"
       - "443:443"
+
+volumes:
+  npht-config:
