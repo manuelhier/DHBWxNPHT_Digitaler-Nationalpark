@@ -52,7 +52,7 @@ export default function App() {
         <div className="hero-lower" />
       </section>
 
-      <FeedbackPanel onOpenChange={handleFeedbackOpenChange} />
+      <FeedbackPanel chatOpen={chatOpen} onOpenChange={handleFeedbackOpenChange} />
       <ChatWidget open={chatOpen} onOpen={() => setChatOpen(true)} onClose={() => setChatOpen(false)} />
     </>
   )

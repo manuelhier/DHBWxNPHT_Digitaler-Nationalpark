@@ -8,7 +8,7 @@
 
 ## BUNDESLAND KÄRNTEN
 
-## ORT 1: HEILIGENBLUT AM GROSSGLOCKNER
+### ORT 1: HEILIGENBLUT AM GROSSGLOCKNER
 
 **Höhenlage:** ca. 1.288–1.291 m ü.M.
 **Bundesland:** Kärnten
@@ -25,7 +25,7 @@ Besonderheiten:
 **Tourismus-Kontakt:** Hohe Tauern – die Nationalpark-Region in Kärnten GmbH, Hof 4, 9844 Heiligenblut | Tel.: +43 4824 2700 | <tourismus@nationalpark-hohetauern.at>
 Kein Bahnanschluss; Zufahrt über die B107 (Mölltal) oder die Großglockner Hochalpenstraße
 
-## ORT 2: MALLNITZ
+### ORT 2: MALLNITZ
 
 **Bundesland:** Kärnten
 **Lage:** Eingebettet zwischen Goldberg- und Ankogelgruppe; grenzt im Norden an Salzburg; am südlichen Eingang des Tauerntunnels der Tauernbahn
@@ -37,7 +37,7 @@ Besonderheiten:
 **Nationalpark-Einrichtungen:** BIOS Nationalparkzentrum Mallnitz (ganzjährig saisonal geöffnet; Ausstellung „univerzoom nationalpark"; rangerlabs)
 **Anreise öffentlich:** Tauernbahn (Zug) bis Bahnhof Mallnitz-Obervellach, dann Ortszentrum erreichbar
 
-## ORT 3: MÖRTSCHACH (WINKLERN)
+### ORT 3: MÖRTSCHACH (WINKLERN)
 
 **Bundesland:** Kärnten
 **Höhenlage:** ca. 700–800 m ü.M.
@@ -49,7 +49,7 @@ Besonderheiten:
 - Natur Aktiv Hotel Tauernstern (4 Sterne) befindet sich direkt im Ort Winklern
 **Nationalpark-Einrichtungen:** Nationalpark-Infostelle Winklern
 
-## ORT 4: GROßKIRCHHEIM / DÖLLACH
+### ORT 4: GROßKIRCHHEIM / DÖLLACH
 
 **Bundesland:** Kärnten
 **Besonderheiten:** Sitz der Nationalparkverwaltung Kärnten (Döllach 14, 9843 Großkirchheim); historischer Bergbauort (Goldabbau im Fleißtal)
@@ -59,7 +59,7 @@ Besonderheiten:
 
 ## BUNDESLAND SALZBURG
 
-## ORT 5: MITTERSILL
+### ORT 5: MITTERSILL
 
 **Bundesland:** Salzburg
 **Lage:** Pinzgau; zentraler Ausgangspunkt für die Nationalpark-Region Salzburg
@@ -67,7 +67,7 @@ Besonderheiten:
 **Nationalpark-Einrichtungen:** Nationalparkwelten Mittersill (8 Themenwelten, 3D-Kino, Gletscherwelt), Science Center Nationalpark Hohe Tauern; Sitz der Nationalparkverwaltung Salzburg und der Ferienregion
 **Ferienregion-Kontakt:** Gerlosstraße 18, 5730 Mittersill | Tel.: +43 6562 40939 | <ferienregion@nationalpark.at>
 
-## ORT 6: KRIMML
+### ORT 6: KRIMML
 
 **Bundesland:** Salzburg (Pinzgau, Nationalpark-Gemeinde)
 **Besonderheiten:** Heimat der Krimmler Wasserfälle (380 m Gesamtfallhöhe, fünfthöchste Wasserfälle der Welt); einziges Goldgräberdorf der Alpen im Fleißtal (Heiligenblut) liegt in der Nähe
@@ -75,24 +75,24 @@ Besonderheiten:
 **Touristisches Angebot:** Krimmler Wasserfallweg, Krimmler Achental-Wanderungen, KrimmlTauernhaus
 **Nationalpark-Einrichtungen:** Nationalparkbüro; Krimmler WasserWelten (interaktives Ausflugsziel)
 
-## ORT 7: NEUKIRCHEN AM GROSSVENEDIGER
+### ORT 7: NEUKIRCHEN AM GROSSVENEDIGER
 
 **Bundesland:** Salzburg
 **Besonderheiten:** Ausgangspunkt für das Virgental und den Großvenediger (3.666 m)
 **Nationalpark-Einrichtungen:** Haus der Wildnis (Nationalpark-Besucherzentrum)
 
-## ORT 8: RAURIS (RAURISER KRUMLTAL)
+### ORT 8: RAURIS (RAURISER KRUMLTAL)
 
 **Bundesland:** Salzburg
 **Besonderheiten:** Krumltal ist Kerngebiet der Bartgeier-Wiederansiedlung (erste Auswilderung 1986; erste erfolgreiche Brut in Österreich 2010); historischer Goldabbauort
 **Nationalpark-Einrichtungen:** Nationalparkbüro Rauris
 
-## ORT 9: HÜTTSCHLAG (GROSSARLTAL)
+### ORT 9: HÜTTSCHLAG (GROSSARLTAL)
 
 **Bundesland:** Salzburg
 **Besonderheiten:** Endpunkt des Hohe Tauern Panorama Trails (275 km, 17 Etappen); seit 1991 Nationalparkgemeinde; Talmuseum Hüttschlag (Ausstellung „Auf der Alm – zwischen Himmel und Erde")
 
-## ORT 10: HOLLERSBACH IM PINZGAU
+### ORT 10: HOLLERSBACH IM PINZGAU
 
 **Bundesland:** Salzburg
 **Nationalpark-Einrichtungen:** Nationalparkwerkstatt im Klausnerhaus (Natur und Kultur mit allen Sinnen)
@@ -101,7 +101,7 @@ Besonderheiten:
 
 ## BUNDESLAND TIROL (OSTTIROL)
 
-## ORT 11: MATREI IN OSTTIROL
+### ORT 11: MATREI IN OSTTIROL
 
 **Bundesland:** Tirol (Osttirol)
 **Höhenlage:** ca. 1.000 m ü.M.
@@ -113,7 +113,7 @@ Besonderheiten:
 - Naturhotel Outside **** S (Nationalparkpartner) befindet sich im Ort
 **Nationalpark-Einrichtungen:** Nationalparkhaus Matrei (Ausstellung „Momente des Staunens", 360°-Videos, 6 Erlebnisräume); Sitz der Nationalparkverwaltung Tirol | Kirchplatz 2, 9971 Matrei i.O. | Tel.: +43 (4875) 5161-10
 
-## ORT 12: KALS AM GROSSGLOCKNER
+### ORT 12: KALS AM GROSSGLOCKNER
 
 **Bundesland:** Tirol (Osttirol)
 **Lage:** Im Kalser Tal, direkt am Fuß des Großglockners
@@ -125,12 +125,12 @@ Besonderheiten:
 - Gradonna Mountain Resort ***** liegt hier
 **Wildtiersafari:** Regelmäßige Ranger-Touren ab Lucknerhaus (Ködnitztal)
 
-## ORT 13: HINTERBICHL (VIRGENTAL)
+### ORT 13: HINTERBICHL (VIRGENTAL)
 
 **Bundesland:** Tirol (Osttirol)
 **Besonderheiten:** Am Ende des abgeschiedenen Virgentals; Heimat des „Heimat – Das Natur Resort"; Ausgangspunkt für Touren in das Innergschlöß und zum Großvenediger
 
-## ORT 14: ST. JAKOB IN DEFEREGGEN
+### ORT 14: ST. JAKOB IN DEFEREGGEN
 
 **Bundesland:** Tirol (Osttirol)
 **Nationalpark-Einrichtungen:** Umweltbildungszentrum im Defreggental (rangerlabs; Forschen und Lernen mit Nationalpark-Rangern)

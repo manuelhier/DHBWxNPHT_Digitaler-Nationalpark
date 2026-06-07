@@ -125,6 +125,7 @@ const WelcomeScreen = () => (
       <div className="chat-welcome-bubble">
         Grüß Gott! Ich bin <strong>Forrest</strong>, der digitale Assistent des Nationalparks Hohe Tauern.{' '}
         Wie kann ich Ihnen helfen?
+        <span className="chat-welcome-en"><em>Tip: Feel free to chat in English too.</em> 🇬🇧</span>
       </div>
     </div>
     <div className="chat-suggestions">

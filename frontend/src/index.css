@@ -112,6 +112,7 @@ body {
   padding: 12px 14px; display: flex; align-items: center; gap: 10px;
 }
 .feedback-header-title { font-size: 15px; font-weight: 700; color: var(--white); flex: 1; }
+.feedback-header-title-en { display: block; font-size: 12px; font-weight: 400; color: rgba(255,255,255,0.65); }
 .feedback-close {
   background: rgba(255,255,255,0.15); border: none; color: var(--white); cursor: pointer;
   width: 26px; height: 26px; border-radius: 50%;
@@ -120,6 +121,7 @@ body {
 .feedback-close:hover { background: rgba(255,255,255,0.28); }
 .feedback-body { padding: 0 16px 16px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
 .feedback-desc { font-size: 0.78rem; color: #555; text-align: center; line-height: 1.45; }
+.feedback-desc-en { display: block; margin-top: 5px; font-size: 0.73rem; color: #aaa; }
 .feedback-qr { width: 160px; height: 160px; object-fit: contain; border-radius: 8px; border: 1px solid #e0e8e0; }
 .feedback-badge { font-size: 0.7rem; color: #888; letter-spacing: 0.04em; }
 
@@ -217,6 +219,7 @@ body {
   border-radius: 16px 16px 16px 4px; padding: 16px 18px;
   font-size: 1.05rem; line-height: 1.6; text-align: center;
 }
+.chat-welcome-en { display: block; margin-top: 6px; font-size: 0.82rem; color: #888; }
 .chat-welcome-bubble::before {
   content: ''; position: absolute;
   left: -12px; top: 50%; transform: translateY(-50%);

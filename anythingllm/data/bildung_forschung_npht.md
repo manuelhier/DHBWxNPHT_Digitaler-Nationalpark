@@ -1,17 +1,16 @@
 # DATENSATZ: BILDUNG & FORSCHUNG – NATIONALPARK HOHE TAUERN
-**Quelle:** Verifiziert über hohetauern.at, nationalparksaustria.at, nationalparks-austria.at (Mai 2026)
 
+**Quelle:** Verifiziert über hohetauern.at, nationalparksaustria.at, nationalparks-austria.at (Mai 2026)
 
 ---
 
-
-### BILDUNGSEINRICHTUNGEN IM ÜBERBLICK
+## BILDUNGSEINRICHTUNGEN IM ÜBERBLICK
 
 Der Nationalpark Hohe Tauern betreibt in allen drei Bundesländern Bildungseinrichtungen, sogenannte „Bildungshäuser". Diese sind die Kompetenzzentren des Nationalparks zur Wissensvermittlung.
 
 1. BIOS Nationalparkzentrum Mallnitz (Kärnten)
    **Adresse:** Mallnitz 36, 9822 Mallnitz
-   **Tel.:** +43 (4825) 6161 | E-Mail: nationalpark@ktn.gv.at
+   **Tel.:** +43 (4825) 6161 | E-Mail: <nationalpark@ktn.gv.at>
    **Öffnung:** Saisonal geöffnet (Sommer und Winter)
    **Ausstellung:** „univerzoom nationalpark" – interaktive Erlebnisausstellung auf zwei Stockwerken
    **Inhalte:** Entstehung des Lebens, Tier- und Pflanzenwelt, Geschichte des Nationalparks, Klimaveränderungen, Wasserkreislauf, heimische Kräuter, Bergsturz vom Auernig
@@ -26,7 +25,7 @@ Der Nationalpark Hohe Tauern betreibt in allen drei Bundesländern Bildungseinri
 
 3. Nationalparkhaus Matrei (Tirol)
    **Adresse:** Kirchplatz 2, 9971 Matrei in Osttirol
-   **Tel.:** +43 (4875) 5161-10 | E-Mail: nationalparkservice.tirol@hohetauern.at
+   **Tel.:** +43 (4875) 5161-10 | E-Mail: <nationalparkservice.tirol@hohetauern.at>
    **Öffnung:** Saisonal geöffnet
    **Ausstellung:** „Momente des Staunens" – Einführung in Lebensräume des Schutzgebiets
    **Features:** Spektakuläre 360°-Videos der Hotspots, 6 Erlebnisräume, jährlich wechselnde Sonderausstellungen (Sommer)
@@ -43,11 +42,9 @@ Der Nationalpark Hohe Tauern betreibt in allen drei Bundesländern Bildungseinri
    **Schwerpunkt:** Wasserkreislauf, Gebirgsbäche, Gletscherwasser
    **Zielgruppe:** Schulklassen, Kinder (u.a. Wasser-Lerncamp)
 
-
 ---
 
-
-### NATIONALPARK AKADEMIE
+## NATIONALPARK AKADEMIE
 
 **Gegründet:** 1997
 **Träger:** Gemeinsame Bildungseinrichtung der Nationalparkländer Kärnten, Salzburg und Tirol
@@ -57,17 +54,16 @@ Der Nationalpark Hohe Tauern betreibt in allen drei Bundesländern Bildungseinri
 **Ausbildung:** Die Nationalpark Akademie ist das offizielle Ausbildungszentrum für „Zertifizierte Österreichische Nationalpark Ranger:innen". Neben einem Grundmodul gibt es vertiefende Fortbildungen.
 
 Veranstaltungsformate:
+
 - Botanische Hochgebirgstage
 - Kräuterseminare
 - Wildnisthemen-Seminare
 - Tagungen zu Wildtiermanagement, Biodiversität, Alpinen Naturgefahren
 - Fortbildungen für Lehrpersonen
 
-
 ---
 
-
-### FORSCHUNGSSCHWERPUNKTE
+## FORSCHUNGSSCHWERPUNKTE
 
 Der Nationalpark Hohe Tauern ist ein international bedeutendes Forschungsgebiet. Die Forschungsarbeit ist in folgende Bereiche gegliedert (verifiziert, Quelle: hohetauern.at/forschung):
 
@@ -101,9 +97,7 @@ Der Nationalpark Hohe Tauern ist ein international bedeutendes Forschungsgebiet.
    **Kooperation:** Österreichischer Alpenverein Gletschermessdienst, GeoSphere Austria
    **Messstation Hoher Sonnblick:** 3.106 m, seit 1886, eine der ältesten Bergwetterstationen der Welt
 
-
 ---
-
 
 FORSCHUNGSDATENQUELLEN (für RAG-System relevant)
 
@@ -113,11 +107,9 @@ FORSCHUNGSDATENQUELLEN (für RAG-System relevant)
 - hausdernatur.at – Haus der Natur Salzburg (Naturkundemuseum & Forschungspartner)
 - alpenverein.at/gletscher – Jahresberichte des Gletschermessdienstes
 
-
 ---
 
-
-### KOOPERATIONEN & PARTNER
+## KOOPERATIONEN & PARTNER
 
 - Österreichischer Alpenverein (ÖAV): Größter Grundbesitzer im Nationalpark (ca. 333 km² / ein Viertel der Fläche); Gletschermessdienst
 - GeoSphere Austria: Klimaforschung, Messstation Hoher Sonnblick
@@ -126,27 +118,24 @@ FORSCHUNGSDATENQUELLEN (für RAG-System relevant)
 - Haus der Natur Salzburg (hausdernatur.at): Naturkundemuseum und Forschungspartner
 - Nationalparks Austria: Dachorganisation aller österreichischen Nationalparks; Bildungsakademie
 
-
 ---
 
-
-### UNTERRICHTSMATERIALIEN FÜR SCHULEN
+## UNTERRICHTSMATERIALIEN FÜR SCHULEN
 
 Der Nationalpark unterstützt Lehrpersonen mit kostenlosen Unterrichtsmaterialien:
+
 - Fächer: Biologie und Umweltkunde, Geografie und Wirtschaftskunde, Geschichte und Sozialkunde
 - Format: Wissensteile, Arbeitsblätter, Präsentationsfolien
 - Download: hohetauern.at/de/bildung/unterrichtsmaterialien
 - Zielgruppe: Mittlere und höhere Schulen
 
-
 ---
 
-
-### KONTAKT FORSCHUNG
+## KONTAKT FORSCHUNG
 
 Forschungsanfragen Kärnten:
 Katharina Aichhorn | Forschung, Nationalpark Hohe Tauern
-nationalpark@ktn.gv.at | Döllach 14, 9843 Großkirchheim | Tel.: +43 (0) 4825 / 6161
+<nationalpark@ktn.gv.at> | Döllach 14, 9843 Großkirchheim | Tel.: +43 (0) 4825 / 6161
 
 Forschungsförderung:
 **Informationen zu Forschungsförderungen:** hohetauern.at/de/forschung/forschungsfoerderung

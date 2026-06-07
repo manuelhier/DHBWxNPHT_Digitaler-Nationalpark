@@ -1,28 +1,27 @@
 import { useEffect, useRef, useState } from 'react'
 
 interface Props {
+  chatOpen: boolean
   onOpenChange: (open: boolean) => void
 }
 
-export default function FeedbackPanel({ onOpenChange }: Props) {
+export default function FeedbackPanel({ chatOpen, onOpenChange }: Props) {
   const [open, setOpen] = useState(false)
   const timerRef = useRef<ReturnType<typeof setTimeout>>()
 
-  const scheduleShow = () => {
-    timerRef.current = setTimeout(() => setOpen(true), 5000)
-  }
-
   useEffect(() => {
-    scheduleShow()
+    clearTimeout(timerRef.current)
+    if (chatOpen) {
+      timerRef.current = setTimeout(() => setOpen(true), 5000)
+    } else {
+      setOpen(false)
+    }
     return () => clearTimeout(timerRef.current)
-  }, [])
+  }, [chatOpen])
 
   useEffect(() => { onOpenChange(open) }, [open, onOpenChange])
 
-  const handleClose = () => {
-    setOpen(false)
-    scheduleShow()
-  }
+  const handleClose = () => setOpen(false)
 
   if (!open) {
     return (
@@ -40,7 +39,10 @@ export default function FeedbackPanel({ onOpenChange }: Props) {
   return (
     <div className="feedback-panel">
       <div className="feedback-header">
-        <span className="feedback-header-title">Ihre Meinung zählt!</span>
+        <span className="feedback-header-title">
+          Ihre Meinung zählt!
+          <span className="feedback-header-title-en">Your opinion matters!</span>
+        </span>
         <button className="feedback-close" onClick={handleClose} aria-label="Schließen">
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
             <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
@@ -51,6 +53,9 @@ export default function FeedbackPanel({ onOpenChange }: Props) {
         <p className="feedback-desc">
           Wie hilfreich war <strong>FragForrest</strong>? Scannen Sie den QR-Code und nehmen Sie
           an unserer kurzen Umfrage teil – dauert nur eine Minute.
+          <span className="feedback-desc-en">
+            How helpful was <strong>FragForrest</strong>? Scan the QR code and take our short survey – only takes a minute.
+          </span>
         </p>
         <img src="/assets/feedback-qr.jpeg" alt="Feedback-Umfrage QR-Code" className="feedback-qr" />
       </div>

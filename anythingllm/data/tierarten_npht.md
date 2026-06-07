@@ -92,7 +92,7 @@ Die „Big Five der Alpen" im Nationalpark Hohe Tauern:
 
 ---
 
-WEITERE TIERARTEN (Auswahl)
+## WEITERE TIERARTEN (Auswahl)
 
 Vögel:
 

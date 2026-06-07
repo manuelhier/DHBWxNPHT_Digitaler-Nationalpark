@@ -1,16 +1,17 @@
 # DATENSATZ: HOTELS IM NATIONALPARK HOHE TAUERN
-**Quelle:** Verifiziert über offizielle Hotel-Websites, Osttirol Tourismus, booking.com, hotels.com (Mai 2026)
 
+**Quelle:** Verifiziert über offizielle Hotel-Websites, Osttirol Tourismus, booking.com, hotels.com (Mai 2026)
 
 ---
 
+## HOTEL 1: Naturhotel Outside ****S
 
-### HOTEL 1: Naturhotel Outside ****S
 **Ort:** Matrei in Osttirol, Tirol (Virgenerstraße 3, 9971 Matrei in Osttirol)
 **Kategorie:** 4-Sterne-Superior (offiziell klassifiziert)
 **Zimmer:** 50 Zimmer (alle mit Balkon und Bergblick)
 **Lage:** Im Zentrum von Matrei in Osttirol, ca. 5 Minuten Gehweg vom Gletscherweg Innergschloss; 3 km vom Großglockner Resort Kals-Matrei
 Ausstattung (verifiziert):
+
 - Natur SPA (neu seit 2025): Solebad mit 35°C warmem Deferegger Heilwasser, 5 Saunen (Finnische Sauna 90°C, Soledampfbad, Bio-Sauna 60°C u.a.), Indoor-Pool, Außenpool
 - Gourmetrestaurant mit 3 Falstaff-Gabeln, regionale und saisonale Küche
 - Yoga- & Pilatesprogramm, Outdoor-Yoga-Deck mit Bergblick
@@ -21,13 +22,12 @@ Ausstattung (verifiziert):
 - Familiengeführt
 **Verpflegung:** Frühstück, Halbpension, 3/4-Pension buchbar
 **Check-in:** ab 15:00 Uhr | Check-out: bis 11:00 Uhr
-**Website:** www.hotel-outside.at
-
+**Website:** <www.hotel-outside.at>
 
 ---
 
+## HOTEL 2: Gradonna ****S Mountain Resort Chalets & Hotel
 
-### HOTEL 2: Gradonna ****S Mountain Resort Chalets & Hotel
 **Ort:** Kals am Großglockner, Tirol (Gradonna 1, 9981 Kals am Großglockner)
 **Kategorie:** 4-Sterne-Superior
 **Höhenlage:** 1.350 m ü.M. (laut offizieller Website; eine Quelle nennt auch 1.500 m)
@@ -35,6 +35,7 @@ Ausstattung (verifiziert):
 **Zimmer:** 36 Chalets, 23 Suiten im Hotelturm; insgesamt ca. 159 Zimmereinheiten
 **Lage:** Direkt am Skigebiet Großglockner Resort Kals-Matrei; Ski-in/Ski-out; autofreies Resort
 Ausstattung (verifiziert):
+
 - Wellnessbereich: 3.000 m², mehrere Innenpools und Außenbadeteich (700 m² Natur-Badeteich, solarbeheizt), 7 Saunen
 - Haubenküche (Gourmetpension)
 - Kinderclub (ab 3 Jahren, 6x/Woche), Programm für Teens 12+
@@ -46,19 +47,19 @@ Ausstattung (verifiziert):
 - Wurde als Filmkulisse genutzt (u.a. "Nine Perfect Strangers")
 **Verpflegung:** Gourmetpension (Frühstücksbuffet, Nachmittagssnack, mehrgängiges Gourmetmenü oder Schmankerlbuffet)
 **Tel.:** +43 4876 82000
-**Website:** www.gradonna.at
+**Website:** <www.gradonna.at>
 **Öffnung Bergsommer 2026:** ab 14. Juni 2026
-
 
 ---
 
+## HOTEL 3: Natur Aktiv Hotel Tauernstern ****
 
-### HOTEL 3: Natur Aktiv Hotel Tauernstern ****
 **Ort:** Winklern, Kärnten (Winklern 24, 9841 Winklern)
 **Kategorie:** 4-Sterne-Hotel
 **Zimmer:** 18 Zimmer (16 Doppelzimmer + 2 Zirbenholz-Suiten)
 **Lage:** Direkt neben dem Wahrzeichen von Winklern (Mautturm), im Herzen des Nationalparks Hohe Tauern; ca. 10 Fahrminuten zur Großglockner Hochalpenstraße
 Ausstattung (verifiziert):
+
 - 2 Saunen, Wellnessbereich
 - Außenpool, Sonnenterrasse mit Panoramablick ins Mölltal
 - Restaurant mit regionaler Kärntner Küche (Zutaten von umliegenden Bauernhöfen), persönlich zubereitet von Inhaberin Sabine Figl
@@ -70,26 +71,24 @@ Ausstattung (verifiziert):
 - Nationalpark-Partnerbetrieb (TauernAlpin)
 **Familiengeführt:** Inhaber Sabine und Markus Figl
 **Tel.:** +43 4822 248
-**E-Mail:** info@tauernstern.at
-**Website:** www.tauernstern.at
-
+**E-Mail:** <info@tauernstern.at>
+**Website:** <www.tauernstern.at>
 
 ---
 
+## HOTEL 4: Heimat – Das Natur Resort
 
-### HOTEL 4: Heimat – Das Natur Resort
 **Ort:** Hinterbichl, Virgental, Osttirol
 **Kategorie:** Natur-Resort (Boutique)
 **Lage:** Am Ende des Virgentals, umgeben von den Alpen des Nationalparks
 **Ausstattung:** Umfangreiches Wander- und Naturangebot im Sommer; Skioptionen im Winter
 **Besonderheiten:** Abgeschiedene Lage im Virgental; sehr persönlicher, familiärer Service
-**Website:** www.heimat-resort.at
-
+**Website:** <www.heimat-resort.at>
 
 ---
 
+## HOTEL 5: Wallackhaus RegioJet Hotels
 
-### HOTEL 5: Wallackhaus RegioJet Hotels
 **Ort:** Heiligenblut am Großglockner, Kärnten
 **Kategorie:** Berghotel
 **Höhenlage:** 2.304 m ü.M.
@@ -97,24 +96,22 @@ Ausstattung (verifiziert):
 **Ausstattung:** Halbpension (Frühstück und Abendessen); Ausgangspunkt für Hochtouren, Gletscherwanderungen und Skitouren
 **Besonderheiten:** Eines der höchstgelegenen Hotels der Region; nächstgelegen zu Kaiser-Franz-Josefs-Höhe und Pasterze-Gletscher
 
-
 ---
 
+## HOTEL 6: Hotel Kärntnerhof
 
-### HOTEL 6: Hotel Kärntnerhof
 **Ort:** Mallnitz, Kärnten
 **Kategorie:** 3-Sterne-Hotel
 **Ausstattung (verifiziert):** Finnische Sauna, Dampfdusche, Infrarotkabine, Spielzimmer, Kinderspielplatz, kostenfreies Parken
 **Besonderheiten:** Familienfreundliches Hotel in Mallnitz; einem der Eingangsorte zum Nationalpark auf Kärntner Seite; Nähe zum BIOS Nationalparkzentrum Mallnitz
 
-
 ---
 
+## ALLGEMEINE HINWEISE ZU UNTERKÜNFTEN IM NATIONALPARK
 
-### ALLGEMEINE HINWEISE ZU UNTERKÜNFTEN IM NATIONALPARK:
 - Unterkunftstypen: Hotels, Ferienwohnungen, Privatzimmer, Almhütten, Campingplätze
 - Nationalpark-Partnerbetriebe sind zertifizierte Betriebe, die sich zu nachhaltigem Tourismus verpflichten
-- Buchungsplattformen: www.nationalpark.at, www.osttirol.com, www.nationalpark-hohetauern.at
+- Buchungsplattformen: <www.nationalpark.at>, <www.osttirol.com>, <www.nationalpark-hohetauern.at>
 - Nationalpark SommerCard: Inklusivleistungen wie Seilbahnfahrten, Eintritt Besucherzentren, Wanderbus – erhältlich ab der ersten Übernachtung in Partnerbetrieben
 - Krimmler Wasserfallweg: kostenpflichtig; mit der Nationalpark SommerCard kostenfreier Eintritt
-- Ferienregion Nationalpark Hohe Tauern: Gerlosstraße 18, 5730 Mittersill | Tel.: +43 6562 40939 | ferienregion@nationalpark.at
+- Ferienregion Nationalpark Hohe Tauern: Gerlosstraße 18, 5730 Mittersill | Tel.: +43 6562 40939 | <ferienregion@nationalpark.at>
