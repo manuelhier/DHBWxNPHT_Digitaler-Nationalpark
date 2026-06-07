@@ -8,6 +8,7 @@ frontend/public/config.json
 # Node / frontend
 node_modules/
 dist/
+.vite/
 .next/
 .nuxt/
 build/
