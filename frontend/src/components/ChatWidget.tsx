@@ -6,10 +6,9 @@ import {
   ThreadPrimitive,
   MessagePrimitive,
   ComposerPrimitive,
-  ActionBarPrimitive,
 } from '@assistant-ui/react'
 import { MarkdownTextPrimitive } from '@assistant-ui/react-markdown'
-import { createAdapter, submitFeedback } from '../lib/adapter'
+import { createAnythingLLMAdapter } from '../lib/adapter'
 
 const MarkdownText = (props: { text: string }) => <MarkdownTextPrimitive {...(props as object)} />
 
@@ -44,21 +43,13 @@ const UserMessage = () => (
 )
 
 const AssistantMessage = () => {
-  const messageId = useAuiState((s) => s.message.id)
   const status = useAuiState((s) => s.message.status)
   const isError = status?.type === 'incomplete' && status.reason === 'error'
+  const errorMessage = isError && status.error instanceof Error ? status.error.message : null
   const isRunning = status?.type === 'running'
   const hasContent = useAuiState((s) =>
     s.message.content.some((c) => c.type === 'text' && (c as { type: 'text'; text: string }).text.length > 0)
   )
-  const [voted, setVoted] = useState<'up' | 'down' | null>(null)
-
-  const handleFeedback = (rating: 'up' | 'down') => {
-    if (voted) return
-    setVoted(rating)
-    submitFeedback(messageId, rating)
-  }
-
   return (
     <MessagePrimitive.Root className="chat-message chat-message-assistant">
       <img src="/assets/forrest.gif" className="chat-message-avatar" alt="Forrest" />
@@ -69,47 +60,27 @@ const AssistantMessage = () => {
             : <>
                 <MessagePrimitive.Content components={{ Text: MarkdownText }} />
                 {isError
-                  ? <code className="chat-error-code">Antwort fehlgeschlagen – bitte erneut versuchen.</code>
+                  ? <code className="chat-error-code">{errorMessage ?? 'Antwort fehlgeschlagen – bitte erneut versuchen.'}</code>
                   : null}
               </>
           }
         </div>
         <div className="chat-message-meta">
           <MessageTimestamp />
-          <ActionBarPrimitive.Root
-            className="chat-reactions"
-            hideWhenRunning
-            autohide="not-last"
-          >
-            <ActionBarPrimitive.FeedbackPositive asChild>
-              <button
-                className="chat-reaction-btn"
-                title="Hilfreich"
-                aria-label="Hilfreich"
-                onClick={() => handleFeedback('up')}
-                disabled={voted !== null && voted !== 'up'}
-              >
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3z"/>
-                  <path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
-                </svg>
-              </button>
-            </ActionBarPrimitive.FeedbackPositive>
-            <ActionBarPrimitive.FeedbackNegative asChild>
-              <button
-                className="chat-reaction-btn"
-                title="Nicht hilfreich"
-                aria-label="Nicht hilfreich"
-                onClick={() => handleFeedback('down')}
-                disabled={voted !== null && voted !== 'down'}
-              >
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3z"/>
-                  <path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/>
-                </svg>
-              </button>
-            </ActionBarPrimitive.FeedbackNegative>
-          </ActionBarPrimitive.Root>
+          <div className="chat-reactions">
+            <button className="chat-reaction-btn" title="Feedback (demnächst)" aria-label="Hilfreich" disabled>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3z"/>
+                <path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
+              </svg>
+            </button>
+            <button className="chat-reaction-btn" title="Feedback (demnächst)" aria-label="Nicht hilfreich" disabled>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3z"/>
+                <path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/>
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     </MessagePrimitive.Root>
@@ -154,7 +125,7 @@ interface PanelProps {
 function ChatPanel({ onClose, conversationId, onConversationId, copied, onCopyId, size, onSetSize, onReset }: PanelProps) {
   const onConversationIdRef = useRef(onConversationId)
   onConversationIdRef.current = onConversationId
-  const adapter = useMemo(() => createAdapter((id) => onConversationIdRef.current(id)), [])
+  const adapter = useMemo(() => createAnythingLLMAdapter((id) => onConversationIdRef.current(id)), [])
   const runtime = useLocalRuntime(adapter)
 
   const handleResizeMouseDown = (e: React.MouseEvent) => {

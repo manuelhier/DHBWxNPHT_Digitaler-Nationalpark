@@ -36,6 +36,7 @@ services:
     ports:
       - "80:80"
     volumes:
+      - ./frontend/nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - npht-config:/run/config:ro
     depends_on:
       anythingllm:

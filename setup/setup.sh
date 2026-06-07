@@ -92,5 +92,6 @@ fi
 echo "→ Writing nginx auth include to /run/config/anythingllm-auth.conf..."
 mkdir -p /run/config
 printf 'proxy_set_header Authorization "Bearer %s";\n' "$API_KEY" > /run/config/anythingllm-auth.conf
+printf '{"workspace":"%s"}\n' "$SLUG" > /run/config/anythingllm-slug.json
 
 echo "✓ Done. Workspace slug: $SLUG"

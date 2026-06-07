@@ -356,7 +356,8 @@ body {
   transition: color 0.15s, background 0.15s;
 }
 .chat-reaction-btn svg { width: 13px; height: 13px; }
-.chat-reaction-btn:hover { color: var(--green); background: var(--green-light); }
+.chat-reaction-btn:hover:not(:disabled) { color: var(--green); background: var(--green-light); }
+.chat-reaction-btn:disabled { opacity: 0.35; cursor: not-allowed; }
 .chat-reaction-btn[data-state="on"] { color: var(--green); }
 .chat-reaction-btn[data-state="on"] svg { fill: var(--green); stroke: var(--green); }
 
