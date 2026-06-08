@@ -55,12 +55,17 @@ Docker Compose startet drei Dienste:
 | `npht-setup` | Richtet Workspace, Dokumente und Chat-Widget automatisch ein, beendet sich danach |
 | `npht-frontend` | Nginx-Server mit dem Chat-Frontend auf Port 80 |
 
-Der Setup-Container wartet automatisch, bis AnythingLLM bereit ist, und führt dann folgende Schritte aus:
+Der Setup-Container wartet automatisch, bis AnythingLLM bereit ist, und ist **idempotent** — er prüft zunächst, ob der Workspace bereits existiert:
+
+**Erster Start (kein Workspace vorhanden):**
 - Workspace `hohe-tauern` erstellen
 - System-Prompt einspielen
 - Dokumente aus `anythingllm/data/` hochladen und einbetten
-- Embed-Config für das Chat-Widget anlegen
-- `frontend/config.json` mit der generierten Embed-ID schreiben
+
+**Folgestarts (Workspace existiert bereits):**
+- Einrichtung wird übersprungen — Embeddings, Chat-Verlauf und Einstellungen bleiben erhalten
+
+In beiden Fällen wird abschließend die nginx-Konfiguration (API-Key, Workspace-Slug) unter `/run/config/` geschrieben.
 
 Logs des Setup-Containers prüfen:
 
@@ -68,7 +73,7 @@ Logs des Setup-Containers prüfen:
 docker logs npht-setup
 ```
 
-Erwartete Ausgabe am Ende: `✓ Done. Workspace slug: hohe-tauern, embed UUID: <uuid>`
+Erwartete Ausgabe am Ende: `✓ Done. Workspace slug: hohe-tauern`
 
 ---
 
@@ -97,12 +102,14 @@ docker ps
 
 **Kompletter Neuaufbau** (Workspace und Dokumente werden neu eingespielt):
 
+Da der Workspace persistent ist, reicht ein einfaches `down` + `up` nicht mehr für einen Neuaufbau. Workspace zuerst über die Admin UI (`http://localhost:3001`) manuell löschen, dann:
+
 ```bash
 docker compose down
 docker compose up -d
 ```
 
-Da der Setup-Container bei jedem Start den Workspace neu anlegt, wird dabei auch eine neue Embed-ID generiert und `frontend/config.json` aktualisiert.
+Der Setup-Container erkennt beim nächsten Start, dass kein Workspace vorhanden ist, und führt die vollständige Einrichtung erneut durch.
 
 ---
 

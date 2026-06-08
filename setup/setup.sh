@@ -38,54 +38,53 @@ API_KEY=$(curl -sf -X POST "$BASE/api/system/generate-api-key" \
 
 AUTH="Authorization: Bearer $API_KEY"
 
-# Nuke existing workspace
-echo "→ Removing existing workspace (nuke-and-rebuild)..."
-EXISTING_SLUG=$(curl -sf "$BASE/api/v1/workspaces" \
+# Check if workspace already exists
+echo "→ Checking for existing workspace..."
+SLUG=$(curl -sf "$BASE/api/v1/workspaces" \
   -H "$AUTH" \
   | jq -r --arg name "$WORKSPACE_NAME" '.workspaces[] | select(.name==$name) | .slug // empty')
 
-if [ -n "$EXISTING_SLUG" ]; then
-  curl -sf -X DELETE "$BASE/api/v1/workspace/$EXISTING_SLUG" -H "$AUTH" > /dev/null
-  echo "   Deleted: $EXISTING_SLUG"
-fi
-
-# Create workspace
-echo "→ Creating workspace..."
-SLUG=$(curl -sf -X POST "$BASE/api/v1/workspace/new" \
-  -H "$AUTH" \
-  -H "Content-Type: application/json" \
-  -d "{\"name\":\"$WORKSPACE_NAME\"}" \
-  | jq -r '.workspace.slug')
-
-# Apply system prompt
-echo "→ Applying system prompt..."
-PROMPT=$(cat /config/system-prompt-v1.md)
-curl -sf -X POST "$BASE/api/v1/workspace/$SLUG/update" \
-  -H "$AUTH" \
-  -H "Content-Type: application/json" \
-  -d "{\"openAiPrompt\": $(echo "$PROMPT" | jq -Rs .), \"queryRefusalResponse\": \"Dazu habe ich leider keine Informationen. Ich beantworte nur Fragen zum Nationalpark Hohe Tauern.\", \"chatMode\": \"query\"}" > /dev/null
-
-# Upload documents from /data
-echo "→ Uploading documents..."
-ADDED_DOCS=()
-for f in /data/*; do
-  [ -f "$f" ] || continue
-  echo "   + $(basename "$f")"
-  DOC_LOC=$(curl -sf -X POST "$BASE/api/v1/document/upload" \
-    -H "$AUTH" \
-    -F "file=@$f" \
-    | jq -r '.documents[0].location')
-  ADDED_DOCS+=("\"$DOC_LOC\"")
-done
-
-# Embed documents into workspace
-if [ ${#ADDED_DOCS[@]} -gt 0 ]; then
-  echo "→ Embedding ${#ADDED_DOCS[@]} document(s)..."
-  ADDS=$(IFS=,; echo "${ADDED_DOCS[*]}")
-  curl -sf -X POST "$BASE/api/v1/workspace/$SLUG/update-embeddings" \
+if [ -n "$SLUG" ]; then
+  echo "   Workspace exists, skipping init: $SLUG"
+else
+  # Create workspace
+  echo "→ Creating workspace..."
+  SLUG=$(curl -sf -X POST "$BASE/api/v1/workspace/new" \
     -H "$AUTH" \
     -H "Content-Type: application/json" \
-    -d "{\"adds\": [$ADDS], \"deletes\": []}" > /dev/null
+    -d "{\"name\":\"$WORKSPACE_NAME\"}" \
+    | jq -r '.workspace.slug')
+
+  # Apply system prompt
+  echo "→ Applying system prompt..."
+  PROMPT=$(cat /config/system-prompt-v1.md)
+  curl -sf -X POST "$BASE/api/v1/workspace/$SLUG/update" \
+    -H "$AUTH" \
+    -H "Content-Type: application/json" \
+    -d "{\"openAiPrompt\": $(echo "$PROMPT" | jq -Rs .), \"queryRefusalResponse\": \"Dazu habe ich leider keine Informationen. Ich beantworte nur Fragen zum Nationalpark Hohe Tauern.\", \"chatMode\": \"query\"}" > /dev/null
+
+  # Upload documents from /data
+  echo "→ Uploading documents..."
+  ADDED_DOCS=()
+  for f in /data/*; do
+    [ -f "$f" ] || continue
+    echo "   + $(basename "$f")"
+    DOC_LOC=$(curl -sf -X POST "$BASE/api/v1/document/upload" \
+      -H "$AUTH" \
+      -F "file=@$f" \
+      | jq -r '.documents[0].location')
+    ADDED_DOCS+=("\"$DOC_LOC\"")
+  done
+
+  # Embed documents into workspace
+  if [ ${#ADDED_DOCS[@]} -gt 0 ]; then
+    echo "→ Embedding ${#ADDED_DOCS[@]} document(s)..."
+    ADDS=$(IFS=,; echo "${ADDED_DOCS[*]}")
+    curl -sf -X POST "$BASE/api/v1/workspace/$SLUG/update-embeddings" \
+      -H "$AUTH" \
+      -H "Content-Type: application/json" \
+      -d "{\"adds\": [$ADDS], \"deletes\": []}" > /dev/null
+  fi
 fi
 
 # Write nginx auth include so frontend nginx can inject the Authorization header

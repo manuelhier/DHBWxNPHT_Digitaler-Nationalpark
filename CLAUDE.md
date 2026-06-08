@@ -19,7 +19,7 @@ anythingllm/
   data/                 # Source documents for RAG ingestion (German)
 
 setup/
-  setup.sh              # One-shot init: workspace, documents, embed config, config.json
+  setup.sh              # Idempotent init: full setup on first run, skipped if workspace exists
   Dockerfile
 
 frontend/
@@ -41,14 +41,15 @@ Three containers start:
 | Container | Role | Port |
 |---|---|---|
 | `npht-anythingllm` | RAG backend | 3001 |
-| `npht-setup` | One-shot init, exits when done | — |
+| `npht-setup` | Idempotent init, exits when done | — |
 | `npht-frontend` | nginx serving the frontend | 80 |
 
-The setup container waits for AnythingLLM to be healthy, then:
-1. Creates workspace `hohe-tauern`
-2. Applies the system prompt from `anythingllm/config/system-prompt-v1.md`
-3. Uploads and embeds all documents from `anythingllm/data/`
-4. Creates an embed config and writes its UUID to `frontend/config.json`
+The setup container waits for AnythingLLM to be healthy, then checks if the workspace already exists:
+
+- **First run (no workspace):** creates workspace `hohe-tauern`, applies system prompt from `anythingllm/config/system-prompt-v1.md`, uploads and embeds all documents from `anythingllm/data/`
+- **Subsequent runs (workspace exists):** skips all of the above — embeddings, chat history, and settings persist
+
+Either way, it writes the API key and workspace slug to `/run/config/` for nginx to pick up.
 
 Frontend: `http://localhost`  
 Admin UI: `http://localhost:3001`  
@@ -75,7 +76,7 @@ Embedding runs natively inside the container (no extra API key). Vector DB is La
 
 ## How the Embed Widget Works
 
-`frontend/index.html` fetches `/config.json` at page load to get the embed UUID, then dynamically injects the AnythingLLM widget `<script>` tag. This avoids hardcoding a UUID that changes every time setup runs.
+`frontend/index.html` fetches `/anythingllm-slug.json` at page load to get the workspace slug, then uses it to communicate with the AnythingLLM backend via the proxied `/api/` path.
 
 nginx proxies:
 - `/api/` → `http://anythingllm:3001/api/`
@@ -85,7 +86,7 @@ The widget color scheme uses park green (`#2f6b3f`) throughout.
 
 ## System Prompt
 
-The chatbot answers in German by default, switches to English if the user writes in English. Prompts are versioned in `anythingllm/config/`. The active prompt is applied automatically by `setup.sh` on each startup.
+The chatbot answers in German by default, switches to English if the user writes in English. Prompts are versioned in `anythingllm/config/`. The active prompt is applied by `setup.sh` only on first run (when the workspace is created) — subsequent edits should be made via the AnythingLLM Admin UI.
 
 Emergency number for mountain incidents: **140** (Bergrettung Österreich) — always referenced in the system prompt.
 
