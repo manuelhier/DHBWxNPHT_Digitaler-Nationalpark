@@ -12,7 +12,7 @@ import { createAnythingLLMAdapter } from '../lib/adapter'
 
 const MarkdownText = (props: { text: string }) => <MarkdownTextPrimitive {...(props as object)} />
 
-const SUGGESTIONS = ['Wanderwege', 'Tierbeobachtungen', 'Hütten & Unterkünfte', 'Anreise']
+const SUGGESTIONS = ['Wanderwege', 'Tierbeobachtungen', 'Hütten & Unterkünfte', 'Anreise in den Nationalpark']
 const DEFAULT_W = 580
 const DEFAULT_H = 820
 
