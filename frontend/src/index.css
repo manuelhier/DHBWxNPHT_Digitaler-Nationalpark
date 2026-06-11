@@ -210,7 +210,7 @@ body {
 
 .chat-welcome { display: flex; align-items: center; gap: 16px; max-width: 480px; }
 .chat-welcome-img {
-  width: 200px; height: 200px; object-fit: contain;
+  width: 180px; height: 180px; object-fit: contain;
   border-radius: 16px; flex-shrink: 0; opacity: 0.82;
 }
 .chat-welcome-bubble {

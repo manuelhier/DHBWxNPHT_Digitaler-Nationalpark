@@ -52,7 +52,7 @@ const AssistantMessage = () => {
   )
   return (
     <MessagePrimitive.Root className="chat-message chat-message-assistant">
-      <img src="/assets/forrest.gif" className="chat-message-avatar" alt="Forrest" />
+      <img src="/assets/forrest.png" className="chat-message-avatar" alt="Forrest" />
       <div className="chat-message-body">
         <div className={`chat-bubble ${isError ? 'chat-bubble-error' : 'chat-bubble-assistant'}`}>
           {isRunning && !hasContent
@@ -92,9 +92,9 @@ const AssistantMessage = () => {
 const WelcomeScreen = () => (
   <div className="chat-empty-state">
     <div className="chat-welcome">
-      <img src="/assets/forrest.gif" className="chat-welcome-img" alt="Forrest" />
+      <img src="/assets/forrest.png" className="chat-welcome-img" alt="Forrest" />
       <div className="chat-welcome-bubble">
-        Grüß Gott! Ich bin <strong>Forrest</strong>, der digitale Assistent des Nationalparks Hohe Tauern.{' '}
+        <em>Griaß Di!</em> Ich bin <strong>Forrest</strong>, der digitale Assistent des Nationalparks Hohe Tauern.{' '}
         Wie kann ich Ihnen helfen?
         <span className="chat-welcome-en"><em>Tip: Feel free to chat in English too.</em> 🇬🇧</span>
       </div>
