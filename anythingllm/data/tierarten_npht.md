@@ -6,8 +6,8 @@
 
 ## ÜBERBLICK
 
-**Gesamtanzahl Tierarten:** über 10.000
-Anteil österreichischer Säugetiere, Vögel, Reptilien und Amphibien: ca. 50 %
+**Gesamtanzahl Tierarten:** 15.000 Tierarten - Ein Drittel aller in Österreich vorkommenden Tierarten.
+
 **Besonderheit:** Der Nationalpark beheimatet Tierarten, die im 19. Jahrhundert in der Region fast vollständig ausgerottet waren und erfolgreich wiederangesiedelt wurden (Steinbock, Bartgeier).
 
 Die „Big Five der Alpen" im Nationalpark Hohe Tauern:
@@ -17,11 +17,24 @@ Die „Big Five der Alpen" im Nationalpark Hohe Tauern:
 3. Steinbock
 4. Gämse
 5. Murmeltier
+
 (Mitunter werden auch Alpensalamander und Feuersalamander als ergänzende „Große Fünf" genannt.)
 
 ---
 
-## TIERART 1: BARTGEIER (Gypaetus barbatus)
+## TIERART 1: STEINADLER (Aquila chrysaetos)
+
+**Kategorie:** Vogel / Greifvogel
+**Flügelspannweite:** bis zu 2,3 Meter (zählt zu den größten Greifvögeln Europas)
+**Nahrung:** Aktiver Jäger; Beute sind Murmeltiere, Hasen, Rehkitze, Gämsen, Füchse, Marder
+**Schutzstatus:** Streng geschützt
+**Bestand im Nationalpark:** ca. 40 Steinadler-Brutpaare (etwa 15 % des österreichischen Gesamtbestandes)
+**Verhalten:** Steinadler legen nur wenige Eier pro Brut und kümmern sich intensiv um ihren Nachwuchs.
+**Beste Beobachtungsorte:** Hochgebirgslagen, Gamsgrubenweg (Kaiser-Franz-Josefs-Höhe), Ködnitztal (Kals), Rauriser Krumltal
+
+---
+
+## TIERART 2: BARTGEIER (Gypaetus barbatus)
 
 **Kategorie:** Vogel / Greifvogel
 **Flügelspannweite:** bis zu 2,9 Meter
@@ -32,18 +45,6 @@ Die „Big Five der Alpen" im Nationalpark Hohe Tauern:
 **Besonderheit:** Der Nationalpark Hohe Tauern ist das einzige Gebiet im gesamten Alpenraum und in ganz Mitteleuropa, in dem regelmäßig wildlebende Geier beobachtet werden können. Bartgeier sind Standvögel – sie verbleiben das ganze Jahr in ihrem Brutrevier.
 **Beste Beobachtungsorte:** Rauriser Krumltal (Salzburg), Seebachtal (Mallnitz/Kärnten), Hochgebirgslagen allgemein
 **Meldung von Sichtungen:** <nationalpark@ktn.gv.at> (Datum, Ort, Flugrichtung, Uhrzeit, individuelle Merkmale angeben)
-
----
-
-## TIERART 2: STEINADLER (Aquila chrysaetos)
-
-**Kategorie:** Vogel / Greifvogel
-**Flügelspannweite:** bis zu 2,3 Meter (zählt zu den größten Greifvögeln Europas)
-**Nahrung:** Aktiver Jäger; Beute sind Murmeltiere, Hasen, Rehkitze, Gämsen, Füchse, Marder
-**Schutzstatus:** Streng geschützt
-**Bestand im Nationalpark:** ca. 40 Steinadler-Brutpaare (etwa 15 % des österreichischen Gesamtbestandes)
-**Verhalten:** Steinadler legen nur wenige Eier pro Brut und kümmern sich intensiv um ihren Nachwuchs.
-**Beste Beobachtungsorte:** Hochgebirgslagen, Gamsgrubenweg (Kaiser-Franz-Josefs-Höhe), Ködnitztal (Kals), Rauriser Krumltal
 
 ---
 

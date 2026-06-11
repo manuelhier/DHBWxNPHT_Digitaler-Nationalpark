@@ -10,6 +10,7 @@ _Stand: 11.06.2026_
 **Temperatur:** 13–17°C
 
 **Temperaturen nach Höhe:**
+
 - Tal (Heiligenblut, ca. 1.288 m): 13–17°C
 - 2.000 m Höhe: 8°C
 - 3.000 m Höhe (Gipfelbereich): 2°C
@@ -25,6 +26,7 @@ _Stand: 11.06.2026_
 **Temperatur:** 9–18°C
 
 **Temperaturen nach Höhe:**
+
 - Tal (Heiligenblut): 9–18°C
 - 2.000 m Höhe: 6°C
 - 3.000 m Höhe: -2°C
