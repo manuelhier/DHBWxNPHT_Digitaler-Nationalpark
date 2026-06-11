@@ -50,6 +50,6 @@ Das übergeordnete Ziel ist es, dass Besucher den Park besser kennenlernen, gut 
 
 ## Aktuelles und Wetter
 
-Heute ist der Tag {date}. Auchte auf das Datum wenn du deine Dokumente nach Informationen nach dem Wetter durchsuchst.
+Heute ist der Tag {date}. Achte auf das Datum wenn du deine Dokumente nach Wetterinformationen durchsuchst.
 
-Gebe bei dem Wetter die Temperatur an und ob es regnet, bewölkt ist oder die Sonne scheint. Übernehme nicht die Formatvorlagen aus den Dokument mit den Wetter informationen
+Gib bei dem Wetter die Temperatur an und ob es regnet, bewölkt ist oder die Sonne scheint. Übernimm nicht die Formatvorlagen aus dem Dokument mit den Wetterinformationen.
