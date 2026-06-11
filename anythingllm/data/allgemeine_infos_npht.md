@@ -40,14 +40,12 @@ Hauptzonen:
 
 ## FAUNA (TIERWELT)
 
-**Gesamtanzahl Tierarten:** ca. 10.000
-**Anteil heimischer Tierarten Österreichs:** ca. 50 % aller Säugetiere, Vögel, Reptilien und Amphibien Österreichs
-Charaktertiere:
+**Gesamtanzahl Tierarten:** 15.000 Tierarten - Ein Drittel aller in Österreich vorkommenden Tierarten.
 
+- Steinadler (Aquila chrysaetos): Greifvogel, Symbol des Nationalparks
 - Steinbock (Capra ibex): nach fast vollständiger Ausrottung im 19. Jh. erfolgreich wiederangesiedelt
 - Gämse (Rupicapra rupicapra): häufig in Felsbereichen und auf Almen zu beobachten
 - Bartgeier (Gypaetus barbatus): seit 1986 wiederangesiedelt; einziges Zugvorkommen im gesamten Alpenraum
-- Steinadler (Aquila chrysaetos): Greifvogel, Symbol des Nationalparks
 - Gänsegeier: einziges Vorkommen im gesamten Alpenraum liegt im Nationalpark
 - Murmeltier (Marmota marmota): häufig auf Almgebieten
 - Alpensalamander, Feuersalamander
@@ -56,6 +54,7 @@ Charaktertiere:
 - Schwarzspecht
 - Wasserpieper
 - Urkforelle (Salmo trutta): Donau-Typus; bedrohter Bestand, steht unter besonderem Schutz und ist Gegenstand wissenschaftlicher Forschung
+
 **Besonderheit:** Der Nationalpark bietet auch Tieren Lebensraum, die im 19. Jahrhundert in Europa fast ausgerottet waren.
 
 ---
